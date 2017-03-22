@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Card">
+      <UniqueIdentifier>{48ace11c-dff5-4f42-b8ee-8cc69d38538d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayType">
+      <UniqueIdentifier>{b0aa6d2c-4ec6-4495-9b5e-c966bbd3f7ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{501f8728-7626-4628-a1e9-920496edd1c4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FFSolitaire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FFSolitaireDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FFSolitaireView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CardColumn.cpp">
+      <Filter>Card</Filter>
+    </ClCompile>
+    <ClCompile Include="Deck.cpp">
+      <Filter>Card</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowerCard.cpp">
+      <Filter>Card</Filter>
+    </ClCompile>
+    <ClCompile Include="Play4BY6.cpp">
+      <Filter>PlayType</Filter>
+    </ClCompile>
+    <ClCompile Include="Play8By6.cpp">
+      <Filter>PlayType</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>PlayType</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayFortuneTeller.cpp">
+      <Filter>PlayType</Filter>
+    </ClCompile>
+    <ClCompile Include="CtrlBitmapDisplay.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultDlg.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FFSolitaire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FFSolitaireDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FFSolitaireView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CardColumn.h">
+      <Filter>Card</Filter>
+    </ClInclude>
+    <ClInclude Include="Deck.h">
+      <Filter>Card</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowerCard.h">
+      <Filter>Card</Filter>
+    </ClInclude>
+    <ClInclude Include="Play4BY6.h">
+      <Filter>PlayType</Filter>
+    </ClInclude>
+    <ClInclude Include="Play8By6.h">
+      <Filter>PlayType</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>PlayType</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayFortuneTeller.h">
+      <Filter>PlayType</Filter>
+    </ClInclude>
+    <ClInclude Include="CtrlBitmapDisplay.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultDlg.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bitmap\10_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\10_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\10_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\10_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\11_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\11_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\11_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\11_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\12_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\12_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\12_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\12_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\1_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\1_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\1_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\1_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\2_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\2_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\2_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\2_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\3_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\3_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\3_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\3_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\4_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\4_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\4_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\4_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\5_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\5_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\5_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\5_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\6_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\6_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\6_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\6_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\7_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\7_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\7_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\7_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\8_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\8_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\8_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\8_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\9_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\9_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\9_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\9_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FFSolitaire.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FFSolitaireDoc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmap\hidden.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FFSolitaire.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\FFSolitaire.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{46804042-A387-4008-9416-386B41CF5C60}</ProjectGuid>
+    <RootNamespace>FFSolitaire</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CardColumn.cpp" />
+    <ClCompile Include="CtrlBitmapDisplay.cpp" />
+    <ClCompile Include="Deck.cpp" />
+    <ClCompile Include="FFSolitaire.cpp" />
+    <ClCompile Include="FFSolitaireDoc.cpp" />
+    <ClCompile Include="FFSolitaireView.cpp" />
+    <ClCompile Include="FlowerCard.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="Play4BY6.cpp" />
+    <ClCompile Include="Play8By6.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayFortuneTeller.cpp" />
+    <ClCompile Include="ResultDlg.cpp" />
+    <ClCompile Include="SelectDlg.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CardColumn.h" />
+    <ClInclude Include="CtrlBitmapDisplay.h" />
+    <ClInclude Include="Deck.h" />
+    <ClInclude Include="FFSolitaire.h" />
+    <ClInclude Include="FFSolitaireDoc.h" />
+    <ClInclude Include="FFSolitaireView.h" />
+    <ClInclude Include="FlowerCard.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="Play4BY6.h" />
+    <ClInclude Include="Play8By6.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayFortuneTeller.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="ResultDlg.h" />
+    <ClInclude Include="SelectDlg.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bitmap\10_1.bmp" />
+    <Image Include="bitmap\10_2.bmp" />
+    <Image Include="bitmap\10_3.bmp" />
+    <Image Include="bitmap\10_4.bmp" />
+    <Image Include="bitmap\11_1.bmp" />
+    <Image Include="bitmap\11_2.bmp" />
+    <Image Include="bitmap\11_3.bmp" />
+    <Image Include="bitmap\11_4.bmp" />
+    <Image Include="bitmap\12_1.bmp" />
+    <Image Include="bitmap\12_2.bmp" />
+    <Image Include="bitmap\12_3.bmp" />
+    <Image Include="bitmap\12_4.bmp" />
+    <Image Include="bitmap\1_1.bmp" />
+    <Image Include="bitmap\1_2.bmp" />
+    <Image Include="bitmap\1_3.bmp" />
+    <Image Include="bitmap\1_4.bmp" />
+    <Image Include="bitmap\2_1.bmp" />
+    <Image Include="bitmap\2_2.bmp" />
+    <Image Include="bitmap\2_3.bmp" />
+    <Image Include="bitmap\2_4.bmp" />
+    <Image Include="bitmap\3_1.bmp" />
+    <Image Include="bitmap\3_2.bmp" />
+    <Image Include="bitmap\3_3.bmp" />
+    <Image Include="bitmap\3_4.bmp" />
+    <Image Include="bitmap\4_1.bmp" />
+    <Image Include="bitmap\4_2.bmp" />
+    <Image Include="bitmap\4_3.bmp" />
+    <Image Include="bitmap\4_4.bmp" />
+    <Image Include="bitmap\5_1.bmp" />
+    <Image Include="bitmap\5_2.bmp" />
+    <Image Include="bitmap\5_3.bmp" />
+    <Image Include="bitmap\5_4.bmp" />
+    <Image Include="bitmap\6_1.bmp" />
+    <Image Include="bitmap\6_2.bmp" />
+    <Image Include="bitmap\6_3.bmp" />
+    <Image Include="bitmap\6_4.bmp" />
+    <Image Include="bitmap\7_1.bmp" />
+    <Image Include="bitmap\7_2.bmp" />
+    <Image Include="bitmap\7_3.bmp" />
+    <Image Include="bitmap\7_4.bmp" />
+    <Image Include="bitmap\8_1.bmp" />
+    <Image Include="bitmap\8_2.bmp" />
+    <Image Include="bitmap\8_3.bmp" />
+    <Image Include="bitmap\8_4.bmp" />
+    <Image Include="bitmap\9_1.bmp" />
+    <Image Include="bitmap\9_2.bmp" />
+    <Image Include="bitmap\9_3.bmp" />
+    <Image Include="bitmap\9_4.bmp" />
+    <Image Include="bitmap\bitmap1.bmp" />
+    <Image Include="bitmap\hidden.bmp" />
+    <Image Include="res\FFSolitaire.ico" />
+    <Image Include="res\FFSolitaireDoc.ico" />
+    <Image Include="res\Toolbar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FFSolitaire.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\FFSolitaire.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="FFSolitaire.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

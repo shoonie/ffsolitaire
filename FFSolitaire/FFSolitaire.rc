@@ -1,0 +1,486 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\FFSolitaire.ico"
+IDR_FFSolitaireTYPE     ICON                    "res\\FFSolitaireDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_CHANGE
+    BUTTON      ID_QUIT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "Change Games",                ID_CHANGE
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About FFSolitaire...",       ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    VK_F2,          ID_FILE_NEW,            VIRTKEY, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 199, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About FFSolitaire"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "FFSolitaire, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2009",IDC_STATIC,42,33,114,8
+    DEFPUSHBUTTON   "OK",IDOK,142,41,50,14,WS_GROUP
+    LTEXT           "Made By Shawn.ChungSH@gmail.com",IDC_STATIC,42,24,150,8
+END
+
+IDD_DIALOG_RESULT DIALOGEX 0, 0, 287, 177
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Result. Today would be...."
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Prev",IDC_BUTTON_PREV,19,131,64,28
+    PUSHBUTTON      "OK",IDC_BUTTONOK,205,131,64,28
+    PUSHBUTTON      "Next",IDC_BUTTON_NEXT,112,131,64,28
+    LTEXT           "Static",IDC_STORY,17,110,256,16
+    LTEXT           "Static",IDC_HOWMANY,17,14,160,15
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "FFSolitaire.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "FFSolitaire.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 192
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "FFSolitaire\n\nFFSolitaire\n\n\nFFSolitaire.Document\nFFSolitaire.Document"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "FFSolitaire"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LUCKNUMBER1         "News, There would be some news Today."
+    IDS_LUCKNUMBER2         "Lover, You would meet a lover."
+    IDS_LUCKNUMBER3         "Picnic, You would go a picnic today."
+    IDS_LUCKNUMBER4         "Annoying, Some annoying things would happen to you today, Be careful."
+    IDS_LUCKNUMBER5         "Noodles, You would have some noodles."
+    IDS_LUCKNUMBER6         "Joy, You would enjoy something "
+    IDS_LUCKNUMBER7         "Fortune, You would get a unexpected fortune!"
+    IDS_LUCKNUMBER8         "Money, You would spend a big money, you would buy something you want!"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LUCKNUMBER9         "Alcohol, You would drink beer or something, Don't drink too much!"
+    IDS_LUCKNUMBER10        "Worry, Something to worry would happen. Don't Worry too much!"
+    IDS_LUCKNUMBER11        "Money! You would win a lotto or something, Send me a little~"
+    IDS_LUCKNUMBER12        "Guest, You would have some one who visit you."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Canada) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENC)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_CAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1_1           BITMAP                  "bitmap\\1_1.bmp"
+IDB_BITMAP1_2           BITMAP                  "bitmap\\1_2.bmp"
+IDB_BITMAP1_3           BITMAP                  "bitmap\\1_3.bmp"
+IDB_BITMAP1_4           BITMAP                  "bitmap\\1_4.bmp"
+IDB_BITMAP2_1           BITMAP                  "bitmap\\2_1.bmp"
+IDB_BITMAP2_2           BITMAP                  "bitmap\\2_2.bmp"
+IDB_BITMAP2_3           BITMAP                  "bitmap\\2_3.bmp"
+IDB_BITMAP2_4           BITMAP                  "bitmap\\2_4.bmp"
+IDB_BITMAP3_1           BITMAP                  "bitmap\\3_1.bmp"
+IDB_BITMAP3_2           BITMAP                  "bitmap\\3_2.bmp"
+IDB_BITMAP3_3           BITMAP                  "bitmap\\3_3.bmp"
+IDB_BITMAP3_4           BITMAP                  "bitmap\\3_4.bmp"
+IDB_BITMAP4_1           BITMAP                  "bitmap\\4_1.bmp"
+IDB_BITMAP4_2           BITMAP                  "bitmap\\4_2.bmp"
+IDB_BITMAP4_3           BITMAP                  "bitmap\\4_3.bmp"
+IDB_BITMAP4_4           BITMAP                  "bitmap\\4_4.bmp"
+IDB_BITMAP5_1           BITMAP                  "bitmap\\5_1.bmp"
+IDB_BITMAP5_2           BITMAP                  "bitmap\\5_2.bmp"
+IDB_BITMAP5_3           BITMAP                  "bitmap\\5_3.bmp"
+IDB_BITMAP5_4           BITMAP                  "bitmap\\5_4.bmp"
+IDB_BITMAP6_1           BITMAP                  "bitmap\\6_1.bmp"
+IDB_BITMAP6_2           BITMAP                  "bitmap\\6_2.bmp"
+IDB_BITMAP6_3           BITMAP                  "bitmap\\6_3.bmp"
+IDB_BITMAP6_4           BITMAP                  "bitmap\\6_4.bmp"
+IDB_BITMAP7_1           BITMAP                  "bitmap\\7_1.bmp"
+IDB_BITMAP7_2           BITMAP                  "bitmap\\7_2.bmp"
+IDB_BITMAP7_3           BITMAP                  "bitmap\\7_3.bmp"
+IDB_BITMAP7_4           BITMAP                  "bitmap\\7_4.bmp"
+IDB_BITMAP8_1           BITMAP                  "bitmap\\8_1.bmp"
+IDB_BITMAP8_2           BITMAP                  "bitmap\\8_2.bmp"
+IDB_BITMAP8_3           BITMAP                  "bitmap\\8_3.bmp"
+IDB_BITMAP8_4           BITMAP                  "bitmap\\8_4.bmp"
+IDB_BITMAP9_1           BITMAP                  "bitmap\\9_1.bmp"
+IDB_BITMAP9_2           BITMAP                  "bitmap\\9_2.bmp"
+IDB_BITMAP9_3           BITMAP                  "bitmap\\9_3.bmp"
+IDB_BITMAP9_4           BITMAP                  "bitmap\\9_4.bmp"
+IDB_BITMAP10_1          BITMAP                  "bitmap\\10_1.bmp"
+IDB_BITMAP10_2          BITMAP                  "bitmap\\10_2.bmp"
+IDB_BITMAP10_3          BITMAP                  "bitmap\\10_3.bmp"
+IDB_BITMAP10_4          BITMAP                  "bitmap\\10_4.bmp"
+IDB_BITMAP11_1          BITMAP                  "bitmap\\11_1.bmp"
+IDB_BITMAP11_2          BITMAP                  "bitmap\\11_2.bmp"
+IDB_BITMAP11_3          BITMAP                  "bitmap\\11_3.bmp"
+IDB_BITMAP11_4          BITMAP                  "bitmap\\11_4.bmp"
+IDB_BITMAP12_1          BITMAP                  "bitmap\\12_1.bmp"
+IDB_BITMAP12_2          BITMAP                  "bitmap\\12_2.bmp"
+IDB_BITMAP12_3          BITMAP                  "bitmap\\12_3.bmp"
+IDB_BITMAP12_4          BITMAP                  "bitmap\\12_4.bmp"
+IDB_BITMAP_HIDDEN       BITMAP                  "bitmap\\hidden.bmp"
+IDB_BITMAP_SELECTED     BITMAP                  "bitmap\\bitmap1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOGEX 0, 0, 206, 99
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "12x4 ",IDC_BUTTON124,71,7,63,85
+    PUSHBUTTON      "8x6",IDC_BUTTON86,136,7,63,85
+    PUSHBUTTON      "Fortune",IDC_BUTTONFORTUNE,7,7,63,85
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 199
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 92
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\FFSolitaire.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (Canada) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\FFSolitaire.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
