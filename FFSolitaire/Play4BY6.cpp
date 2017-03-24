@@ -201,9 +201,8 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 					break;
 				}
 				else
-				{		/////////think over and over,,,,very important part////
+				{		
 					bFoundSomething			=	TRUE;	
-//					CFlowerCard * pPrevCard	=	GetSelectedCard();
 					int nSizeCurColumn		=	m_aMainColumn[i].GetSize();
 					CFlowerCard * pCurCard;
 					int nCurNumber			=	0;

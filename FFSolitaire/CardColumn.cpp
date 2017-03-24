@@ -149,8 +149,6 @@ const CBitmap* CCardColumn::GetHiddenBitmap()
 
 int	CCardColumn::CheckFortuneResult(int Solve[])
 {
-#ifdef USINGVECTOR
-
 	vector<int> vtResult;
 	int i;
 	int nRetCount=	0;
@@ -175,32 +173,6 @@ int	CCardColumn::CheckFortuneResult(int Solve[])
 		}
 
 	}
-#else
-	int nResult[6];
-
-	int i,j,k;
-	int nRetCount=	0;
-	list <CFlowerCard*>::iterator pFCList_Iter	=	m_CardList.begin();
-	for(i=0;i<12;i+=2)
-	{
-		pFCList_Iter++;
-		CFlowerCard	* aCard	=	*pFCList_Iter;
-		nResult[i/2]	=	aCard->GetNumber();
-		pFCList_Iter++;
-	}
-
-	for(j=0;j<6;j++)
-	{
-		for(k=j+1;k<6;k++)
-		{
-			if(nResult[j] == nResult[k])
-			{
-				Solve[nRetCount++] = nResult[j];
-				break;
-			}
-		}
-	}
-#endif
 	return nRetCount;
 }
 

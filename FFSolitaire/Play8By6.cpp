@@ -110,7 +110,6 @@ int CPlay8By6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 				if(i == m_nSelectedColumn)	//reselecte one column, unselect...
 				{
 					rt1	=	m_aMainColumn[i].GetFirstRect();
-//					memcpy(rtInvalidateRect	,&(	m_aMainColumn[i].GetLastRect()) ,sizeof(CRect));
 					nRedraw	=	1;
 					break;
 				}
@@ -168,7 +167,6 @@ int CPlay8By6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 					else
 					{
 						// Move to New Column
-//						GetColumn(i)->PushCards(m_aMainColumn[nSelectedColumn].PopCard());
 						m_aMainColumn[i].PushCards(m_aMainColumn[nSelectedColumn].PopLastCard());
 						if(nSelectedColumn < 4)
 						{
@@ -252,8 +250,6 @@ int CPlay8By6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 					{
 						bFoundSomething = FALSE;
 						break;
-//						nRedraw	=	1;
-//						memcpy(rtInvalidateRect	,&(	m_aMainColumn[nSelectedColumn].GetMainRect()) ,sizeof(CRect));
 					}
 					
 				}
@@ -264,7 +260,6 @@ int CPlay8By6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 		{
 			int	nSelectedColumn		=	m_nSelectedColumn;
 			rt1	=	m_aMainColumn[nSelectedColumn].GetLastRect();
-//			memcpy(rtInvalidateRect	,&(	m_aMainColumn[nSelectedColumn].GetMainRect()) ,sizeof(CRect));
 			nRedraw = 1;
 		}
 	} //else - has seleced card...

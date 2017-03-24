@@ -56,23 +56,3 @@ void CDeck::Shuffle()
 	srand(time(NULL));
 	random_shuffle(Cards.begin(),Cards.end());
 }
-
-
-
-#if 0
-int CDeck::GetNumberOfCard(const int nIndex) 
-{
-	if(nIndex>=0 && nIndex <48)
-		return Cards[nIndex]->GetNumber();
-	else
-		return -1;
-}
-int CDeck::GetPositionOfCard(const int nIndex) 
-{
-	if(nIndex>=0 && nIndex <48)
-		return Cards[nIndex]->GetPosition();
-	else
-		return -1;
-}
-#endif
-

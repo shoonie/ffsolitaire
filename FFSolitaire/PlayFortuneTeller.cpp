@@ -194,7 +194,6 @@ void CPlayFortuneTeller::DrawAll(CDC* pDC)
 ///////////////////////////////////////////////////////////////
 	if(m_bAnyCardSelected)
 	{
-//		SELECTED_COLUMN	n_SelectedColumn = GetSelectedColumn();
 		pBitmap	=	(CBitmap*) (GetColumn(NAME_HIDDEN_COLUMN).GetSelectedBitmap());
 		MemDC.SelectObject(pBitmap);
 		if(m_nSelectedColumn < 4)
