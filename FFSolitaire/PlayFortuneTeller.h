@@ -75,6 +75,5 @@ public:
 	void DrawAll(CDC* pDC);
 
 	CPlayFortuneTeller(void);
-	~CPlayFortuneTeller(void);
-	
+	virtual ~CPlayFortuneTeller(void);
 };

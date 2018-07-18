@@ -14,12 +14,9 @@ CDeck::CDeck(void)
 
 CDeck::~CDeck(void)
 {
-	vector<CFlowerCard*>::iterator pIter;
-    for (pIter= Cards.begin(); pIter != Cards.end();)
+	for (auto pIte:Cards)
     {
-		CFlowerCard *pCard	=	*pIter;
-        delete pCard;
-		pIter++;
+        delete pIte;
     }
 	
 }
@@ -37,7 +34,7 @@ CDeck& CDeck::operator =(const CDeck & AssignDeck)
 }
 CFlowerCard* CDeck::GetCardAtIndex(const int nIndex)const
 {
-	if(nIndex>=0 && nIndex <48)
+	if(nIndex>=0 && nIndex <NumberOfCardsInADeck)
 		return Cards[nIndex];
 	else
 		return NULL;
@@ -45,7 +42,7 @@ CFlowerCard* CDeck::GetCardAtIndex(const int nIndex)const
 
 const CBitmap* CDeck::GetBitmapOfCard(const int nIndex) const
 {
-	if(nIndex>=0 && nIndex <48)
+	if(nIndex>=0 && nIndex <NumberOfCardsInADeck)
 		return Cards[nIndex]->GetBitmap();
 	else
 		return NULL;

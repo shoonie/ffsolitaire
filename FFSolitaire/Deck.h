@@ -5,6 +5,7 @@ using namespace std;
 
 class CDeck		//A set of cards //48 cards...
 {
+	enum { NumberOfCardsInADeck = 48 };
 	vector<CFlowerCard*> Cards;
 public:
 	CFlowerCard* GetCardAtIndex(const int nIndex)const;

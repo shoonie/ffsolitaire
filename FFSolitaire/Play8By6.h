@@ -44,5 +44,5 @@ public:
 	void	DrawAll(CDC* pDC);
 
 	CPlay8By6(void);
-	~CPlay8By6(void);
+	virtual ~CPlay8By6(void);
 };

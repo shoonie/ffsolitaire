@@ -161,7 +161,7 @@ int	CCardColumn::CheckFortuneResult(int Solve[])
 		pFCList_Iter++;
 	}
 	sort(vtResult.begin(),vtResult.end());
-	vector <int>::iterator Int_Iter	=	vtResult.begin();
+	auto Int_Iter	=	vtResult.begin();
 	for(i=0;i<5;i++)
 	{
 		int first	=	*Int_Iter;
