@@ -34,7 +34,7 @@ public:
 	virtual void Serialize(CArchive& ar);
 	void DrawPanel(CDC* pDC);
 	int CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2);
-	BOOL CheckDbClick(CPoint pt);
+	bool CheckDbClick(CPoint pt);
 // Implementation
 public:
 	virtual ~CFFSolitaireDoc();

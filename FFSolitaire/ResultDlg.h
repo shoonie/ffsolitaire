@@ -4,10 +4,11 @@ using namespace std;
 #include "resource.h"
 // CResultDlg dialog
 #include "CtrlBitmapDisplay.h"
+#include <vector>
 class CResultDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CResultDlg)
-	int m_nLuckNumber[12];
+	std::vector<int> m_nLuckNumbers;
 	int m_nCount;
 	int	m_nShowNumber;
 	CCtrlBitmapDisplay	m_StCtrlPicture;
@@ -24,7 +25,7 @@ public:
 	CStatic	m_StCtrlExplainHowManyLuck;
 
 	void ShowLuckCards(int nLuckNumber);
-	void SetLuckNumber(int *pNumber);
+	void SetLuckNumber(std::vector<int> Numbers);
 	void SetLuckCount(int nCount);
 
 protected:

@@ -29,7 +29,7 @@ CFFSolitaireDoc::CFFSolitaireDoc()
 {
 	// TODO: add one-time construction code here
 	m_WhichGame	=	FORTUNE;
-	m_pPlay	=	NULL;
+	m_pPlay	= nullptr;
 }
 
 CFFSolitaireDoc::~CFFSolitaireDoc()
@@ -41,14 +41,14 @@ CFFSolitaireDoc::~CFFSolitaireDoc()
 BOOL CFFSolitaireDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
-		return FALSE;
+		return false;
 
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
 	if(m_pPlay)
 	{
 		delete m_pPlay;
-		m_pPlay	=	NULL;
+		m_pPlay	= nullptr;
 	}
 
 	switch(m_WhichGame)
@@ -72,7 +72,7 @@ BOOL CFFSolitaireDoc::OnNewDocument()
 		m_pPlay->SetMouseRegion();
 	}
 	AfxGetMainWnd()->GetActiveWindow()->Invalidate(NULL);
-	return TRUE;
+	return true;
 }
 
 
@@ -122,7 +122,7 @@ int CFFSolitaireDoc::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 	else
 		return 0;
 }
-BOOL CFFSolitaireDoc::CheckDbClick(CPoint pt)
+bool CFFSolitaireDoc::CheckDbClick(CPoint pt)
 {
 	if(m_pPlay)
 		return m_pPlay->CheckDbClick( pt);

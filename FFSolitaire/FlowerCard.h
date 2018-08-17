@@ -8,13 +8,13 @@ private:
 	int		m_nPosition;		//	1~4
 	CBitmap	* m_pBitmap;
 	void	DeleteBitmap();
-	const BOOL	SetPositionAndNumber();
+	const bool	SetPositionAndNumber();
 
 public:
 	const	CBitmap* GetHiddenBitmap();
 	const	CBitmap* GetBitmap();
 
-	BOOL	SetID(const int nNumber);
+	bool	SetID(const int nNumber);
 
 	int		GetID(){return m_nID;}
 	int		GetNumber(){return m_nNumber;}

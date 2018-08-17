@@ -64,7 +64,7 @@ BOOL CFFSolitaireApp::InitInstance()
 		RUNTIME_CLASS(CMainFrame),       // main SDI frame window
 		RUNTIME_CLASS(CFFSolitaireView));
 	if (!pDocTemplate)
-		return FALSE;
+		return false;
 	AddDocTemplate(pDocTemplate);
 
 
@@ -74,17 +74,17 @@ BOOL CFFSolitaireApp::InitInstance()
 	ParseCommandLine(cmdInfo);
 
 
-	// Dispatch commands specified on the command line.  Will return FALSE if
+	// Dispatch commands specified on the command line.  Will return false if
 	// app was launched with /RegServer, /Register, /Unregserver or /Unregister.
 	if (!ProcessShellCommand(cmdInfo))
-		return FALSE;
+		return false;
 
 	// The one and only window has been initialized, so show and update it
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	m_pMainWnd->UpdateWindow();
 	// call DragAcceptFiles only if there's a suffix
 	//  In an SDI app, this should occur after ProcessShellCommand
-	return TRUE;
+	return true;
 }
 
 

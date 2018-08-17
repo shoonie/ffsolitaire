@@ -14,7 +14,7 @@ public:
 
 // Operations
 public:
-	BOOL SetBitmap(UINT nIDResource);
+	bool SetBitmap(UINT nIDResource);
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CCtrlBitmapDisplay)

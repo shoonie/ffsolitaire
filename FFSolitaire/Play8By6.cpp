@@ -3,16 +3,16 @@
 
 CPlay8By6::CPlay8By6(void)
 {
-	m_bAnyCardSelected	=	FALSE;
+	m_bAnyCardSelected	=	false;
 	m_nSelectedColumn	=	0;
-	m_pSelectedCard		=	NULL;
+	m_pSelectedCard		= nullptr;
 	m_nCount			=	0;
 }
 
 CPlay8By6::~CPlay8By6(void)
 {
 }
-BOOL	CPlay8By6::ShuffleAndInit()
+bool	CPlay8By6::ShuffleAndInit()
 {
 	
 	int i;
@@ -26,13 +26,13 @@ BOOL	CPlay8By6::ShuffleAndInit()
 	for(i=0;i<48;i++)
 		m_aMainColumn[i%8].PushCards(m_aSetOfDeck.GetCardAtIndex(i));
 
-	m_bAnyCardSelected	=	FALSE;
-	return TRUE;
+	m_bAnyCardSelected	=	false;
+	return true;
 }
 
-BOOL CPlay8By6::SetMouseRegion()
+bool CPlay8By6::SetMouseRegion()
 {
-	BOOL	bRet	=	TRUE;
+	bool	bRet	=	true;
 	int i;
 
 //set main column rect
@@ -83,14 +83,14 @@ int CPlay8By6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 {
 	int		nRedraw		=	0;
 	int		i;
-	BOOL	bFoundSomething	=	FALSE;
+	bool	bFoundSomething	=	false;
 	if(!m_bAnyCardSelected)  //first select...
 	{
 		for(i=0;i<8;i++)
 		{
 			if(m_aMainColumn[i].GetLastRect().PtInRect(pt) && m_aMainColumn[i].GetSize() > 0)
 			{
-				m_bAnyCardSelected	=	TRUE;
+				m_bAnyCardSelected	=	true;
 				m_pSelectedCard		=	m_aMainColumn[i].ShowLastCard();
 				m_nSelectedColumn	=	i;
 				SetMouseRegion();
@@ -106,7 +106,7 @@ int CPlay8By6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 		{
 			if(m_aMainColumn[i].GetLastRect().PtInRect(pt) )
 			{
-				bFoundSomething	=	TRUE;
+				bFoundSomething	=	true;
 				if(i == m_nSelectedColumn)	//reselecte one column, unselect...
 				{
 					rt1	=	m_aMainColumn[i].GetFirstRect();
@@ -241,21 +241,21 @@ int CPlay8By6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 						}
 						else
 						{
-							bFoundSomething = FALSE;
+							bFoundSomething = false;
 							break;
 						}
 
 					}
 					else
 					{
-						bFoundSomething = FALSE;
+						bFoundSomething = false;
 						break;
 					}
 					
 				}
 			} //if
 		} //for
-		m_bAnyCardSelected	=	FALSE;
+		m_bAnyCardSelected	=	false;
 		if(!bFoundSomething)
 		{
 			int	nSelectedColumn		=	m_nSelectedColumn;
@@ -286,7 +286,7 @@ void CPlay8By6::DrawAll(CDC *pDC)
 	CDC MemDC;
 
 	CBitmap*	pOldBitmap;
-	CBitmap*	pBitmap	=	NULL;	
+	CBitmap*	pBitmap	= nullptr;
 	MemDC.CreateCompatibleDC(pDC);
 
 	pOldBitmap	=	(CBitmap*)MemDC.SelectObject(pBitmap);

@@ -3,13 +3,13 @@
 
 CPlay4BY6::CPlay4BY6(void)
 {
-	m_bAnyCardSelected		=	FALSE;
+	m_bAnyCardSelected		=	false;
 }
 
 CPlay4BY6::~CPlay4BY6(void)
 {
 }
-BOOL CPlay4BY6::ShuffleAndInit()
+bool CPlay4BY6::ShuffleAndInit()
 {
 	int i;
 	for(i=0;i<12;i++)
@@ -24,12 +24,12 @@ BOOL CPlay4BY6::ShuffleAndInit()
 
 	for(i=24;i<48;i++)
 		m_HiddenColumn.PushCards(m_aSetOfDeck.GetCardAtIndex(i));
-	return TRUE;
+	return true;
 }
 
-BOOL CPlay4BY6::SetMouseRegion()
+bool CPlay4BY6::SetMouseRegion()
 {
-	BOOL	bRet	=	TRUE;
+	bool	bRet	=	true;
 	int i;
 
 //set main column rect
@@ -46,7 +46,7 @@ BOOL CPlay4BY6::SetMouseRegion()
 	m_HiddenColumn.SetLastRect(HIDDEN_STARTX_4BY12,HIDDEN_STARTY_4BY12,CARD_CX,CARD_CY);
 	return bRet;
 }
-BOOL	CPlay4BY6::CheckDbClick(CPoint pt)
+bool	CPlay4BY6::CheckDbClick(CPoint pt)
 {
 	if(m_HiddenColumn.GetSize()>1 && m_HiddenColumn.GetLastRect().PtInRect(pt))
 	{
@@ -54,13 +54,13 @@ BOOL	CPlay4BY6::CheckDbClick(CPoint pt)
 		{
 			m_aMainColumn[i%12].PushCards(m_HiddenColumn.PopLastCard());
 		}
-		m_bAnyCardSelected	=	FALSE;
-		return TRUE;
+		m_bAnyCardSelected	=	false;
+		return true;
 	}
 	else
 	{
-		m_bAnyCardSelected	=	FALSE;
-		return TRUE;
+		m_bAnyCardSelected	=	false;
+		return true;
 	}
 }
 void	CPlay4BY6::DrawAll(CDC* pDC)
@@ -168,14 +168,14 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 {
 	int		nRedraw		=	0;
 	int		i,j;
-	BOOL	bFoundSomething	=	FALSE;
+	bool	bFoundSomething	=	false;
 	if(!m_bAnyCardSelected)
 	{
 		for(i=0;i<12;i++)
 		{
 			if(m_aMainColumn[i].GetLastRect().PtInRect(pt) && m_aMainColumn[i].GetSize() > 0)
 			{
-				m_bAnyCardSelected	=	TRUE;
+				m_bAnyCardSelected	=	true;
 				m_pSelectedCard	=	m_aMainColumn[i].ShowLastCard();
 				m_nSelectedColumn	=	i;
 				SetMouseRegion();
@@ -193,16 +193,16 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 		{
 			if(m_aMainColumn[i].GetLastRect().PtInRect(pt) )
 			{
-				bFoundSomething	=	TRUE;
+				bFoundSomething	=	true;
 				if(i == m_nSelectedColumn)	//reselecte one column, unselect...
 				{
-					m_bAnyCardSelected	=	FALSE;
+					m_bAnyCardSelected	=	false;
 					nRedraw	=	1;
 					break;
 				}
 				else
 				{		
-					bFoundSomething			=	TRUE;	
+					bFoundSomething			=	true;	
 					int nSizeCurColumn		=	m_aMainColumn[i].GetSize();
 					CFlowerCard * pCurCard;
 					int nCurNumber			=	0;
@@ -222,7 +222,7 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 
 					if( nSizeCurColumn > 0 && m_pSelectedCard->GetNumber()	!= nCurNumber )
 					{
-						m_bAnyCardSelected	=	FALSE;
+						m_bAnyCardSelected	=	false;
 						nRedraw	=	1;
 						break;
 					}
@@ -233,7 +233,7 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 					//check prev card top....
 					{
 						int		nColumnSize	=	m_aMainColumn[m_nSelectedColumn].GetSize();
-						BOOL	bHasHidden	=	m_aMainColumn[m_nSelectedColumn].HasHidden();
+						bool	bHasHidden	=	m_aMainColumn[m_nSelectedColumn].HasHidden();
 						int		nPositionCur,nPositionLast;
 						for(j=0;j< nColumnSize;j++)
 						{
@@ -275,9 +275,9 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 						SetMouseRegion();
 						if(m_aMainColumn[m_nSelectedColumn].GetSize() == 1)
 						{
-							m_aMainColumn[m_nSelectedColumn].SetHiddenOrShow(FALSE);
+							m_aMainColumn[m_nSelectedColumn].SetHiddenOrShow(false);
 						}
-						m_bAnyCardSelected	=	FALSE;
+						m_bAnyCardSelected	=	false;
 						if(m_nSelectedColumn < 6)
 						{
 							rt1.top		=	START_Y_1_4BY12;
@@ -317,9 +317,9 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 						SetMouseRegion();
 						if(m_aMainColumn[m_nSelectedColumn].GetSize() == 1)
 						{
-							m_aMainColumn[m_nSelectedColumn].SetHiddenOrShow(FALSE);
+							m_aMainColumn[m_nSelectedColumn].SetHiddenOrShow(false);
 						}
-						m_bAnyCardSelected	=	FALSE;
+						m_bAnyCardSelected	=	false;
 						if(m_nSelectedColumn < 6)
 						{
 							rt1.top		=	START_Y_1_4BY12;
@@ -359,9 +359,9 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 						SetMouseRegion();
 						if(m_aMainColumn[m_nSelectedColumn].GetSize() == 1)
 						{
-							m_aMainColumn[m_nSelectedColumn].SetHiddenOrShow(FALSE);
+							m_aMainColumn[m_nSelectedColumn].SetHiddenOrShow(false);
 						}
-						m_bAnyCardSelected	=	FALSE;
+						m_bAnyCardSelected	=	false;
 						if(m_nSelectedColumn < 6)
 						{
 							rt1.top		=	START_Y_1_4BY12;
@@ -401,9 +401,9 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 						SetMouseRegion();
 						if(m_aMainColumn[m_nSelectedColumn].GetSize() == 1)
 						{
-							m_aMainColumn[m_nSelectedColumn].SetHiddenOrShow(FALSE);
+							m_aMainColumn[m_nSelectedColumn].SetHiddenOrShow(false);
 						}
-						m_bAnyCardSelected	=	FALSE;
+						m_bAnyCardSelected	=	false;
 						if(m_nSelectedColumn < 6)
 						{
 							rt1.top		=	START_Y_1_4BY12;
@@ -441,7 +441,7 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 						for( j=nDepthInColumn;j>= 0;j--)
 							m_aMainColumn[m_nSelectedColumn].PushCards(pTempCard[j]);
 						rt1	=	m_aMainColumn[m_nSelectedColumn].GetLastRect();
-						m_bAnyCardSelected	=	FALSE;
+						m_bAnyCardSelected	=	false;
 						nRedraw	=	1;
 
 					}
@@ -451,10 +451,10 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 				break;
 			}//if
 		}//for
-		if(bFoundSomething == FALSE)
+		if(bFoundSomething == false)
 		{
 			rt1	=	m_aMainColumn[m_nSelectedColumn].GetLastRect();
-			m_bAnyCardSelected	=	FALSE;
+			m_bAnyCardSelected	=	false;
 			nRedraw	=	1;
 		}
 	}//if
@@ -467,7 +467,7 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 			nFinish	=	0;
 			break;
 		}
-		if(m_aMainColumn[i].HasHidden() == TRUE)
+		if(m_aMainColumn[i].HasHidden() == true)
 		{
 			nFinish	=	0;
 			break;

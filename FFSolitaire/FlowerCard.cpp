@@ -10,7 +10,7 @@ CFlowerCard::CFlowerCard(int nID)
 		m_nNumber	=	0;
 		m_nPosition	=	0;
 	}
-	m_pBitmap	=	NULL;
+	m_pBitmap	= nullptr;
 }
 
 CFlowerCard::CFlowerCard(const CFlowerCard & CopyCard)
@@ -25,7 +25,7 @@ CFlowerCard::CFlowerCard(const CFlowerCard & CopyCard)
 		m_pBitmap->LoadBitmap(nResource);
 	}
 	else 
-		m_pBitmap	=	NULL;
+		m_pBitmap	= nullptr;
 
 }
 
@@ -44,7 +44,7 @@ CFlowerCard& CFlowerCard::operator =(const CFlowerCard & AssignCard)
 		m_pBitmap->LoadBitmap(nResource);
 	}
 	else 
-		m_pBitmap	=	NULL;
+		m_pBitmap	= nullptr;
 
 	return *this;
 }
@@ -54,28 +54,28 @@ CFlowerCard::~CFlowerCard(void)
 	DeleteBitmap();
 }
 
-const BOOL CFlowerCard::SetPositionAndNumber()
+const bool CFlowerCard::SetPositionAndNumber()
 {
 	if(m_nID >= 0 && m_nID <48)
 	{
 		m_nNumber	= m_nID/4 +1;
 		m_nPosition	= m_nID%4 +1;
-		return TRUE;
+		return true;
 	}
 	else
-		return FALSE;
+		return false;
 }
 
-BOOL CFlowerCard::SetID(const int nNumber)
+bool CFlowerCard::SetID(const int nNumber)
 {
 	m_nID	= nNumber;
 	if(SetPositionAndNumber())
-		return TRUE;
+		return true;
 	else
 	{
 		m_nNumber	=	0;
 		m_nPosition	=	0;
-		return FALSE;
+		return false;
 	}
 }
 
@@ -93,7 +93,7 @@ const CBitmap* CFlowerCard::GetBitmap()
 		return m_pBitmap;
 	}
 	else
-		return NULL;
+		return nullptr;
 }
 
 const CBitmap* CFlowerCard::GetHiddenBitmap()
@@ -108,7 +108,7 @@ const CBitmap* CFlowerCard::GetHiddenBitmap()
 		return m_pBitmap;
 	}
 	else
-		return NULL;
+		return nullptr;
 }
 
 void CFlowerCard::DeleteBitmap()
@@ -117,6 +117,6 @@ void CFlowerCard::DeleteBitmap()
 	{
 		m_pBitmap->DeleteObject();
 		delete	m_pBitmap;
-		m_pBitmap	=	NULL;
+		m_pBitmap	= nullptr;
 	}
 }

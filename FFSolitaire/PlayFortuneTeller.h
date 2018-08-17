@@ -55,23 +55,23 @@ private:
 
 
 
-	BOOL			m_bAnyCardSelected;
+	bool			m_bAnyCardSelected;
 
 	SELECTED_COLUMN	m_nSelectedColumn;
 	CFlowerCard	*	m_pSelectedCard;
 	int				m_nCount;
 	int				m_nMatchCount;
 
-	BOOL PushSolveColumn(CFlowerCard	*SolveCard);
+	bool PushSolveColumn(CFlowerCard	*SolveCard);
 	CCardColumn& GetColumn(COLUMN_NAME name);
-	BOOL FindNewSelectedCard(SELECTED_COLUMN nColumn, CFlowerCard *pCard);
-	int GetResult(int pResult[]);
+	bool FindNewSelectedCard(SELECTED_COLUMN nColumn, CFlowerCard *pCard);
+	std::vector<int> GetResult();
 public:
-	BOOL	SetMouseRegion();
-	BOOL	ShuffleAndInit();
+	bool	SetMouseRegion();
+	bool	ShuffleAndInit();
 	int		CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2);
 
-	BOOL	CheckDbClick(CPoint pt);
+	bool	CheckDbClick(CPoint pt);
 	void DrawAll(CDC* pDC);
 
 	CPlayFortuneTeller(void);

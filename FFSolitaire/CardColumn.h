@@ -1,5 +1,7 @@
 #pragma once
 #include <list>
+#include <vector>
+
 using namespace std;
 
 #include "FlowerCard.h"
@@ -20,15 +22,15 @@ class CCardColumn
 ///////////////////////////////////////
 ///////////////////////////////////////
 //for 12*4 solitare games only;
-	BOOL	m_bHasHidden;
+	bool	m_bHasHidden;
 ///////////////////////////////////////
 
 public:
 	CCardColumn(void);
 	~CCardColumn(void);
 
-	BOOL	HasHidden(){return m_bHasHidden;}
-	void	SetHiddenOrShow(const BOOL bShow){m_bHasHidden	=	bShow;}
+	bool	HasHidden(){return m_bHasHidden;}
+	void	SetHiddenOrShow(const bool bShow){m_bHasHidden	=	bShow;}
 
 	const CBitmap* GetSelectedBitmap();
 	const CBitmap* GetBitmapOfCard(int nIndex);
@@ -41,10 +43,10 @@ public:
 	const	CRect& GetLastBeforeRect(){return m_rtLastBeforeRect;}
 	const	CRect& GetFirstRect(){return m_rtFirstRect;}
 
-	BOOL	SetBoundaryRect(int x,int y,int cx,int cy);
-	BOOL	SetLastRect(int x,int y,int cx,int cy);
-	BOOL	SetLastBeforeRect(int x,int y,int cx,int cy);
-	BOOL	SetFirstRect(int x,int y,int cx,int cy);
+	bool	SetBoundaryRect(int x,int y,int cx,int cy);
+	bool	SetLastRect(int x,int y,int cx,int cy);
+	bool	SetLastBeforeRect(int x,int y,int cx,int cy);
+	bool	SetFirstRect(int x,int y,int cx,int cy);
 
 	CFlowerCard * PopLastCard();
 	CFlowerCard * ShowLastCard();
@@ -54,8 +56,8 @@ public:
 	CFlowerCard * ShowThirdCard();
 	CFlowerCard * PopFirstCard();
 
-	BOOL	CleanCard();
-	BOOL PushCards(CFlowerCard * pCard);
+	bool	CleanCard();
+	bool PushCards(CFlowerCard * pCard);
 
-	int	CheckFortuneResult(int Solve[]);
+	vector<int> CheckFortuneResult();
 };

@@ -37,7 +37,7 @@ CFlowerCard* CDeck::GetCardAtIndex(const int nIndex)const
 	if(nIndex>=0 && nIndex <NumberOfCardsInADeck)
 		return Cards[nIndex];
 	else
-		return NULL;
+		return nullptr;
 }
 
 const CBitmap* CDeck::GetBitmapOfCard(const int nIndex) const
@@ -45,7 +45,7 @@ const CBitmap* CDeck::GetBitmapOfCard(const int nIndex) const
 	if(nIndex>=0 && nIndex <NumberOfCardsInADeck)
 		return Cards[nIndex]->GetBitmap();
 	else
-		return NULL;
+		return nullptr;
 
 }
 void CDeck::Shuffle()

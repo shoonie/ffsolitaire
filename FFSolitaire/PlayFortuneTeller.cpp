@@ -1,12 +1,12 @@
 #include "StdAfx.h"
 #include "PlayFortuneTeller.h"
 #include "Resultdlg.h"
-CPlayFortuneTeller::CPlayFortuneTeller(void)
+CPlayFortuneTeller::CPlayFortuneTeller(void):
+	m_bAnyCardSelected(false),
+	m_nSelectedColumn(NULL_SELECTED),
+	m_nCount(0),
+	m_nMatchCount(0)
 {
-	m_bAnyCardSelected		=	FALSE;
-	m_nSelectedColumn		=	NULL_SELECTED;
-	m_nCount				=	0;
-	m_nMatchCount			=	0;
 }
 
 CPlayFortuneTeller::~CPlayFortuneTeller(void)
@@ -51,7 +51,7 @@ CCardColumn& CPlayFortuneTeller::GetColumn(COLUMN_NAME name)
 		break;
 	}
 }
-BOOL CPlayFortuneTeller::ShuffleAndInit()
+bool CPlayFortuneTeller::ShuffleAndInit()
 {
 	int i;
 
@@ -74,9 +74,9 @@ BOOL CPlayFortuneTeller::ShuffleAndInit()
 	for(i=20;i<48;i++)
 		m_aHiddenColumn.PushCards(m_aSetOfDeck.GetCardAtIndex(i));
 
-	return TRUE;
+	return true;
 }
-BOOL CPlayFortuneTeller::PushSolveColumn(CFlowerCard	*SolveCard)
+bool CPlayFortuneTeller::PushSolveColumn(CFlowerCard	*SolveCard)
 {
 	switch(m_nCount % 8)
 	{
@@ -100,11 +100,11 @@ BOOL CPlayFortuneTeller::PushSolveColumn(CFlowerCard	*SolveCard)
 
 	m_nCount++;
 
-	return TRUE;
+	return true;
 }
-BOOL CPlayFortuneTeller::SetMouseRegion()
+bool CPlayFortuneTeller::SetMouseRegion()
 {
-	BOOL	bRet	=	TRUE;
+	bool	bRet	=	true;
 	for(int i = 0;i<4;i++)
 		m_aMainColumn[i].SetLastRect(START_X_FORTUNE+i*INTERVAL_COLUMNTOCOLUMN_FORTUNE,
 							INTERVAL_YTOY_FORTUNE*m_aMainColumn[i].GetSize(),
@@ -240,17 +240,14 @@ void CPlayFortuneTeller::DrawAll(CDC* pDC)
 int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 {
 	int		nRedraw		=	0;
-	BOOL	bSelected	=	FALSE;
-	BOOL	bFinish		=	FALSE;
+	bool	bSelected	=	false;
+	bool	bFinish		=	false;
 
 	rt1.top		=	0;
 	rt2.bottom	=	0;
 
 	for(int i=0;i<6;i++)	//0~3 main column, 4 first card of board 5 last card of board
 	{
-		//if(GetColumn(NAME_BOARD_COLUMN).GetSize() == 1 && i== 5)
-		//	break;
-
 		if(	(i < 4 && GetColumn((COLUMN_NAME)i).GetLastRect().PtInRect(pt) ) 
 			|| (i==4 &&  GetColumn(NAME_BOARD_COLUMN).GetFirstRect().PtInRect(pt))
 			|| (i==5 &&  GetColumn(NAME_BOARD_COLUMN).GetLastRect().PtInRect(pt)))
@@ -375,9 +372,9 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 						if(m_nMatchCount == 24)
 						{
 							m_nMatchCount	=	0;;
-							bFinish	=	TRUE;
+							bFinish	=	true;
 						}
-						m_bAnyCardSelected	=	FALSE;
+						m_bAnyCardSelected	=	false;
 					}
 					else
 					{
@@ -429,13 +426,13 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 			pTemp	= GetColumn(NAME_BOARD_COLUMN).PopLastCard();
 			PushSolveColumn(pTemp);
 
-			m_bAnyCardSelected	=	FALSE;
+			m_bAnyCardSelected	=	false;
 			nRedraw	=	1;
 			m_nMatchCount++;
 			if(m_nMatchCount == 24)
 			{
 				m_nMatchCount	=	0;
-				bFinish	=	TRUE;
+				bFinish	=	true;
 			}
 		}
 	}
@@ -489,50 +486,39 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 	{
 		nRedraw =3;
 
-		int	nResultCards[12]	=	{0,};
-		int nResultNumber;
-
 		CResultDlg Dlg;
-		nResultNumber	=	GetResult(nResultCards);
-		Dlg.SetLuckCount(nResultNumber);
-		Dlg.SetLuckNumber(nResultCards);
+		auto ResultVector =	GetResult();
+		Dlg.SetLuckCount(ResultVector.size());
+		Dlg.SetLuckNumber(ResultVector);
 		Dlg.DoModal();
 
 	}
 	return nRedraw;
 }
-int CPlayFortuneTeller::GetResult(int pResult[])	// find solve column same card....using STL ....
+std::vector<int> CPlayFortuneTeller::GetResult()	
 {
-	int nResultCount=0;
-	int i,j=0;
-	int SolveNo[3]	=	{0,};
-	int SolveCount	=	0;
-	
-	for(i=4;i<8;i++)
+	std::vector<int> resultVector;
+	for(int i=4;i<8;i++)
 	{
-		SolveCount		=	GetColumn((COLUMN_NAME)i).CheckFortuneResult(SolveNo);
-
-		for(j=0;j<SolveCount;j++)
-			pResult[nResultCount+j]	=	SolveNo[j];
-		nResultCount	+= SolveCount;
-
+		auto partVector		=	GetColumn((COLUMN_NAME)i).CheckFortuneResult();
+		resultVector.insert(resultVector.end(), partVector.begin(), partVector.end());
 	}
-	return nResultCount;
+	return resultVector;
 
 }
-BOOL CPlayFortuneTeller::FindNewSelectedCard(SELECTED_COLUMN nColumn, CFlowerCard *pCard)
+bool CPlayFortuneTeller::FindNewSelectedCard(SELECTED_COLUMN nColumn, CFlowerCard *pCard)
 {
-	if(pCard	==	NULL)
-		return FALSE;
-	m_bAnyCardSelected	=	TRUE;
+	if(pCard	== nullptr)
+		return false;
+	m_bAnyCardSelected	=	true;
 	m_nSelectedColumn	=	nColumn;
 	m_pSelectedCard		=	pCard;
-	return TRUE;
+	return true;
 }
 
-BOOL CPlayFortuneTeller::CheckDbClick(CPoint pt)
+bool CPlayFortuneTeller::CheckDbClick(CPoint pt)
 {
-	BOOL bRedraw	=	FALSE;
+	bool bRedraw	=	false;
 	CRect	rtBoardColumn;
 	memcpy(&rtBoardColumn,	GetColumn(NAME_BOARD_COLUMN).GetFirstRect(),sizeof(CRect));
 	rtBoardColumn.right	=	GetColumn(NAME_BOARD_COLUMN).GetLastRect().right;
@@ -545,7 +531,7 @@ BOOL CPlayFortuneTeller::CheckDbClick(CPoint pt)
 		{
 			GetColumn(NAME_HIDDEN_COLUMN).PushCards(GetColumn(NAME_BOARD_COLUMN).PopLastCard());
 		}
-		bRedraw	=	TRUE;
+		bRedraw	=	true;
 	}	
 	if(bRedraw)
 		SetMouseRegion();

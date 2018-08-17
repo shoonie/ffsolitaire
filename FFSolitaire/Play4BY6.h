@@ -18,7 +18,7 @@ class CPlay4BY6 :
 	CCardColumn		m_aMainColumn[12];
 	CCardColumn		m_HiddenColumn;
 	
-	BOOL			m_bAnyCardSelected;
+	bool			m_bAnyCardSelected;
 
 	int				m_nCount;
 	int				m_nSelectedColumn;
@@ -26,10 +26,10 @@ class CPlay4BY6 :
 
 public:
 
-	BOOL	SetMouseRegion();
-	BOOL	ShuffleAndInit();
+	bool	SetMouseRegion();
+	bool	ShuffleAndInit();
 	int		CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2);
-	BOOL	CheckDbClick(CPoint pt);
+	bool	CheckDbClick(CPoint pt);
 	void	DrawAll(CDC* pDC);
 
 	CPlay4BY6(void);

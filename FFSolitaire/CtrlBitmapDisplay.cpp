@@ -27,7 +27,7 @@ END_MESSAGE_MAP()
 // CCtrlBitmapDisplay message handlers
 
 
-BOOL CCtrlBitmapDisplay::SetBitmap(UINT nIDResource)
+bool CCtrlBitmapDisplay::SetBitmap(UINT nIDResource)
 {
 	m_Bitmap.DeleteObject();
     return m_Bitmap.LoadBitmap(nIDResource);
@@ -63,7 +63,7 @@ BOOL CCtrlBitmapDisplay::OnEraseBkgnd(CDC* pDC)
    // If we have an image then don't perform any erasing, since the OnPaint
     // function will simply draw over the background
     if (m_Bitmap.GetSafeHandle() != NULL)
-        return TRUE;
+        return true;
 	
     // Obviously we don't have a bitmap - let the base class deal with it.
 	return CWnd::OnEraseBkgnd(pDC);

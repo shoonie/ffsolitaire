@@ -15,7 +15,7 @@ CResultDlg::CResultDlg(CWnd* pParent /*=NULL*/)
 {
 	m_nCount		=	0;
 	m_nShowNumber	=	1;
-	memset(m_nLuckNumber,0,12*4);
+	m_nLuckNumbers.clear();
 }
 
 CResultDlg::~CResultDlg()
@@ -52,30 +52,30 @@ void CResultDlg::OnBnClickedButtonok()
 void CResultDlg::OnBnClickedButtonNext()
 {
 	// TODO: Add your control notification handler code here
-	m_BtCtrlPrev.EnableWindow(TRUE);
+	m_BtCtrlPrev.EnableWindow(true);
 	m_nShowNumber	++;
 	if(m_nShowNumber	==	m_nCount)
-		m_BtCtrlNext.EnableWindow(FALSE);
-	ShowLuckCards(m_nLuckNumber[m_nShowNumber-1]);	
+		m_BtCtrlNext.EnableWindow(false);
+	ShowLuckCards(m_nLuckNumbers[m_nShowNumber-1]);
 }
 
 void CResultDlg::OnBnClickedButtonPrev()
 {
 	// TODO: Add your control notification handler code here
-	m_BtCtrlNext.EnableWindow(TRUE);
+	m_BtCtrlNext.EnableWindow(true);
 	m_nShowNumber	--;
 	if(m_nShowNumber	==	1)
-		m_BtCtrlPrev.EnableWindow(FALSE);
-	ShowLuckCards(m_nLuckNumber[m_nShowNumber-1]);
+		m_BtCtrlPrev.EnableWindow(false);
+	ShowLuckCards(m_nLuckNumbers[m_nShowNumber-1]);
 }
 void CResultDlg::SetLuckCount(int nCount)
 {
 	m_nCount	=	nCount;
 }
 
-void CResultDlg::SetLuckNumber(int *pNumber)
+void CResultDlg::SetLuckNumber(std::vector<int> Numbers)
 {
-	memcpy(m_nLuckNumber,pNumber,m_nCount*4);
+	m_nLuckNumbers = Numbers;
 }
 BOOL CResultDlg::OnInitDialog()
 {
@@ -86,27 +86,27 @@ BOOL CResultDlg::OnInitDialog()
 	if(m_nCount == 0)
 	{
 		m_StCtrlExplainHowManyLuck.SetWindowText(_T("You Don't Have Any Luck Cards. Sorry"));
-		m_BtCtrlPrev.EnableWindow(FALSE);
-		m_BtCtrlNext.EnableWindow(FALSE);
-		return TRUE;
+		m_BtCtrlPrev.EnableWindow(false);
+		m_BtCtrlNext.EnableWindow(false);
+		return true;
 	}
 	else if(m_nCount ==1)
 	{
 		m_StCtrlExplainHowManyLuck.SetWindowText(_T("You Have Only One Luck Card."));
-		m_BtCtrlPrev.EnableWindow(FALSE);
-		m_BtCtrlNext.EnableWindow(FALSE);
+		m_BtCtrlPrev.EnableWindow(false);
+		m_BtCtrlNext.EnableWindow(false);
 	}
 	else if(m_nCount >1)
 	{
 		CString s;
 		s.Format(_T("You Have %d Luck Cards."),m_nCount);
 		m_StCtrlExplainHowManyLuck.SetWindowText(s);
-		m_BtCtrlPrev.EnableWindow(FALSE);
-		m_BtCtrlNext.EnableWindow(TRUE);
+		m_BtCtrlPrev.EnableWindow(false);
+		m_BtCtrlNext.EnableWindow(true);
 	}
-	ShowLuckCards(m_nLuckNumber[0]);
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+	ShowLuckCards(m_nLuckNumbers[0]);
+	return true;  // return true unless you set the focus to a control
+	              // EXCEPTION: OCX Property Pages should return false
 }
 void CResultDlg::ShowLuckCards(int nLuckNumber)
 {

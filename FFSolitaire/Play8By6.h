@@ -30,17 +30,17 @@ class CPlay8By6 :
 
 	CCardColumn		m_aMainColumn[12]; //index 12 -> Hidden Set...
 	
-	BOOL			m_bAnyCardSelected;
+	bool			m_bAnyCardSelected;
 
 	int				m_nSelectedColumn;
 	CFlowerCard	*	m_pSelectedCard;
 	int				m_nCount;
 
 public:
-	BOOL	SetMouseRegion();
-	BOOL	ShuffleAndInit();
+	bool	SetMouseRegion();
+	bool	ShuffleAndInit();
 	int		CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2);
-	BOOL	CheckDbClick(CPoint pt) {return FALSE;}
+	bool	CheckDbClick(CPoint pt) {return false;}
 	void	DrawAll(CDC* pDC);
 
 	CPlay8By6(void);
