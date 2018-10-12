@@ -7,6 +7,7 @@
 
 #include "FFSolitaireDoc.h"
 #include "selectdlg.h"
+#include "Deck.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -30,6 +31,7 @@ CFFSolitaireDoc::CFFSolitaireDoc()
 	// TODO: add one-time construction code here
 	m_WhichGame	=	FORTUNE;
 	m_pPlay	= nullptr;
+
 }
 
 CFFSolitaireDoc::~CFFSolitaireDoc()
@@ -50,19 +52,19 @@ BOOL CFFSolitaireDoc::OnNewDocument()
 		delete m_pPlay;
 		m_pPlay	= nullptr;
 	}
-
+	CDeck* aDeck = CDeck::Instance();
 	switch(m_WhichGame)
 	{
 	case FORTUNE:
-		m_pPlay	=	new CPlayFortuneTeller();
+		m_pPlay	=	new CPlayFortuneTeller(aDeck);
 		AfxGetMainWnd()->SetWindowPos(NULL,10,10,800,700,0);
 		break;
 	case GAME12:
-		m_pPlay	=	new CPlay4BY6();
+		m_pPlay	=	new CPlay4BY6(aDeck);
 		AfxGetMainWnd()->SetWindowPos(NULL,10,10,800,700,0);
 		break;
 	case GAME8:
-		m_pPlay	=	new CPlay8By6();
+		m_pPlay	=	new CPlay8By6(aDeck);
 		AfxGetMainWnd()->SetWindowPos(NULL,10,10,1000,700,0);
 		break;
 	}
@@ -74,9 +76,6 @@ BOOL CFFSolitaireDoc::OnNewDocument()
 	AfxGetMainWnd()->GetActiveWindow()->Invalidate(NULL);
 	return true;
 }
-
-
-
 
 // CFFSolitaireDoc serialization
 

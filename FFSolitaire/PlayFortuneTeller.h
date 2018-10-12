@@ -3,22 +3,21 @@
 
 #include "player.h"
 
-class CPlayFortuneTeller:public CPlayer
+class CPlayFortuneTeller :public CPlayer
 {
 
-	static const int START_X_FORTUNE		=	80;
-	static const int START_Y_FORTUNE		=	50;
-	static const int INTERVAL_COLUMNTOCOLUMN_FORTUNE	=	160;
-	static const int INTERVAL_YTOY_FORTUNE	=	50;
-	static const int HIDDEN_STARTX_FORTUNE	=	120;
-	static const int HIDDEN_STARTY_FORTUNE	=	400;
-	static const int BOARD_STARTX_FORTUNE	=	200;
-	static const int BOARD_STARTY_FORTUNE	=	400;
-	static const int BOARD_INTERVAL_FORTUNE	=	20;
+	static const int START_X_FORTUNE = 80;
+	static const int START_Y_FORTUNE = 50;
+	static const int INTERVAL_COLUMNTOCOLUMN_FORTUNE = 160;
+	static const int INTERVAL_YTOY_FORTUNE = 50;
+	static const int HIDDEN_STARTX_FORTUNE = 120;
+	static const int HIDDEN_STARTY_FORTUNE = 400;
+	static const int BOARD_STARTX_FORTUNE = 200;
+	static const int BOARD_STARTY_FORTUNE = 400;
+	static const int BOARD_INTERVAL_FORTUNE = 20;
 
-
-	static const int CARD_CX			=	64;
-	static const int CARD_CY			=	99;
+	static const int CARD_CX = 64;
+	static const int CARD_CY = 99;
 
 public:
 
@@ -32,7 +31,7 @@ public:
 		BOARD_COLUMN_RIGHT,
 		NULL_SELECTED
 	};
-	 enum COLUMN_NAME
+	enum COLUMN_NAME
 	{
 		NAME_MAIN_COLUMN1,
 		NAME_MAIN_COLUMN2,
@@ -48,12 +47,10 @@ public:
 
 private:
 
- 	CCardColumn		m_aMainColumn[4];
-	CCardColumn		m_aSolvedColumn[4];
+	vector<CCardColumn>	m_MainColumns;
+	vector<CCardColumn> m_aSolvedColumn;
 	CCardColumn		m_aHiddenColumn;
 	CCardColumn		m_aBoardColumn;
-
-
 
 	bool			m_bAnyCardSelected;
 
@@ -74,6 +71,6 @@ public:
 	bool	CheckDbClick(CPoint pt);
 	void DrawAll(CDC* pDC);
 
-	CPlayFortuneTeller(void);
+	CPlayFortuneTeller(CDeck* aDeck);
 	virtual ~CPlayFortuneTeller(void);
 };

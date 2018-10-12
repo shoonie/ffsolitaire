@@ -3,46 +3,44 @@
 #include <algorithm>
 using namespace std;
 
+CDeck* CDeck::_instance = nullptr;
+CDeck* CDeck::Instance()
+{
+	if (_instance == nullptr)
+	{
+		_instance = new CDeck();
+		return _instance;
+	}
+	else
+		return  _instance;
+}
+
 CDeck::CDeck(void)
 {
-	for(int i=0;i<48;i++)
+	for (int i = 0; i < 48; i++)
 	{
-		CFlowerCard *pCard = new CFlowerCard(i);
-		Cards.push_back(pCard);
+		shared_ptr<CFlowerCard> tmp(new CFlowerCard(i));
+		Cards.push_back(tmp);
 	}
 }
 
+
 CDeck::~CDeck(void)
 {
-	for (auto pIte:Cards)
-    {
-        delete pIte;
-    }
-	
+	delete _instance;
 }
-CDeck::CDeck(const CDeck & CopyDeck)
-{
-	Cards.insert(Cards.begin(),CopyDeck.Cards.begin(),CopyDeck.Cards.end());
-}
-CDeck& CDeck::operator =(const CDeck & AssignDeck)
-{
-	if(&AssignDeck	==	this)
-		return *this;
-	Cards.insert(Cards.begin(),AssignDeck.Cards.begin(),AssignDeck.Cards.end());
 
-	return *this;
-}
-CFlowerCard* CDeck::GetCardAtIndex(const int nIndex)const
+shared_ptr<CFlowerCard> CDeck::GetCardAtIndex(const int nIndex)const
 {
-	if(nIndex>=0 && nIndex <NumberOfCardsInADeck)
+	if (nIndex >= 0 && nIndex < NumberOfCardsInADeck)
 		return Cards[nIndex];
 	else
 		return nullptr;
 }
 
-const CBitmap* CDeck::GetBitmapOfCard(const int nIndex) const
+const unique_ptr<CBitmap>& CDeck::GetBitmapOfCard(const int nIndex) const
 {
-	if(nIndex>=0 && nIndex <NumberOfCardsInADeck)
+	if (nIndex >= 0 && nIndex < NumberOfCardsInADeck)
 		return Cards[nIndex]->GetBitmap();
 	else
 		return nullptr;
@@ -50,6 +48,6 @@ const CBitmap* CDeck::GetBitmapOfCard(const int nIndex) const
 }
 void CDeck::Shuffle()
 {
-	srand(time(NULL));
-	random_shuffle(Cards.begin(),Cards.end());
+	srand(unsigned int(time(0)));
+	random_shuffle(Cards.begin(), Cards.end());
 }

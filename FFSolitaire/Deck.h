@@ -1,20 +1,25 @@
 #pragma once
 #include "FlowerCard.h"
 #include <Vector>
-using namespace std;
 
-class CDeck		//A set of cards //48 cards...
+class CDeck		//A set of cards //48 cards This is singleton class.
 {
-	enum { NumberOfCardsInADeck = 48 };
-	vector<CFlowerCard*> Cards;
 public:
-	CFlowerCard* GetCardAtIndex(const int nIndex)const;
-	const CBitmap* GetBitmapOfCard(const int nIndex)const;
-
+	static CDeck* Instance();
+	enum { NumberOfCardsInADeck = 48 };
+	vector<shared_ptr<CFlowerCard>> Cards;
+public:
+	shared_ptr<CFlowerCard> GetCardAtIndex(const int nIndex)const;
+	const unique_ptr<CBitmap>& GetBitmapOfCard(const int nIndex)const;
+private:
+	static CDeck* _instance;
 	CDeck();
+public:
 	virtual ~CDeck();
-	CDeck(const CDeck & CopyDeck);
-	CDeck& operator=(const CDeck & AssignDeck);
+	CDeck(const CDeck & CopyDeck) = delete;
+	CDeck& operator=(const CDeck & AssignDeck) = delete;
+	CDeck(CDeck && CopyDeck) = delete;
+	CDeck& operator=(CDeck && AssignDeck) = delete;
 
 	void Shuffle();
 };
