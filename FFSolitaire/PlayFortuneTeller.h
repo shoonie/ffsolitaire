@@ -21,7 +21,7 @@ class CPlayFortuneTeller :public CPlayer
 
 public:
 
-	enum SELECTED_COLUMN
+	enum class SELECTED_COLUMN
 	{
 		MAIN_COLUMN1,
 		MAIN_COLUMN2,
@@ -31,7 +31,7 @@ public:
 		BOARD_COLUMN_RIGHT,
 		NULL_SELECTED
 	};
-	enum COLUMN_NAME
+	enum class COLUMN_NAME
 	{
 		NAME_MAIN_COLUMN1,
 		NAME_MAIN_COLUMN2,

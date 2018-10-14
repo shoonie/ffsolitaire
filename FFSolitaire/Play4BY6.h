@@ -25,11 +25,11 @@ class CPlay4BY6 :
 	CFlowerCard* m_pSelectedCard;
 
 public:
-	bool SetMouseRegion();
-	bool ShuffleAndInit();
-	int CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2);
-	bool CheckDbClick(CPoint pt);
-	void DrawAll(CDC* pDC);
+	bool SetMouseRegion() override;
+	bool ShuffleAndInit() override;
+	int CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2) override;
+	bool CheckDbClick(CPoint pt) override;
+	void DrawAll(CDC* pDC) override;
 
 	CPlay4BY6(CDeck* aDeck);
 	virtual ~CPlay4BY6(void);

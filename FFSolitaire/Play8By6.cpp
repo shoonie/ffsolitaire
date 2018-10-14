@@ -21,7 +21,7 @@ bool	CPlay8By6::ShuffleAndInit()
 
 	m_pSetOfDeck->Shuffle();
 
-	for (i = 0; i < 48; i++)
+	for (i = 0; i < 48; ++i)
 		m_MainColumns[i % 8].PushCards(m_pSetOfDeck->GetCardAtIndex(i).get());
 
 	m_bAnyCardSelected = false;
@@ -32,7 +32,7 @@ bool CPlay8By6::SetMouseRegion()
 {
 	bool	bRet = true;
 	int i;
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 4; ++i)
 	{
 		if (m_MainColumns[i].GetSize() == 0)
 		{
@@ -49,7 +49,7 @@ bool CPlay8By6::SetMouseRegion()
 				CARD_CY);
 		}
 	}
-	for (i = 4; i < 8; i++)
+	for (i = 4; i < 8; ++i)
 	{
 		if (m_MainColumns[i].GetSize() == 0)
 		{
@@ -66,7 +66,7 @@ bool CPlay8By6::SetMouseRegion()
 				CARD_CY);
 		}
 	}
-	for (i = 8; i < 12; i++)
+	for (i = 8; i < 12; ++i)
 		m_MainColumns[i].SetLastRect(START_SOLVE_X_8BY6,
 			START_SOLVE_Y_8BY6 + INTERVAL_YTOY_8BY6 * (i - 8),
 			CARD_CX,
@@ -97,7 +97,7 @@ int CPlay8By6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 	}
 	else	//has selected card.
 	{
-		for (i = 0; i < 12; i++)
+		for (i = 0; i < 12; ++i)
 		{
 			if (m_MainColumns[i].GetLastRect().PtInRect(pt))
 			{
@@ -260,7 +260,7 @@ int CPlay8By6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 	} //else - has seleced card...
 	//check Finish...
 	int nFinish = 0;
-	for (i = 8; i < 12; i++)
+	for (i = 8; i < 12; ++i)
 	{
 		if (m_MainColumns[i].GetSize() == 12)
 		{
@@ -287,7 +287,7 @@ void CPlay8By6::DrawAll(CDC *pDC)
 	pOldBitmap = (CBitmap*)MemDC.SelectObject(pBitmap);
 	///////////////////////////////////////////////////////////////
 	//draw main column....
-	for (j = 0; j < 4; j++)	//main column....
+	for (j = 0; j < 4; ++j)	//main column....
 	{
 		if (m_MainColumns[j].GetSize() == 0)
 		{
@@ -306,7 +306,7 @@ void CPlay8By6::DrawAll(CDC *pDC)
 		}
 	}
 
-	for (j = 4; j < 8; j++)	//main column....
+	for (j = 4; j < 8; ++j)	//main column....
 	{
 		if (m_MainColumns[j].GetSize() == 0)
 		{
@@ -324,7 +324,7 @@ void CPlay8By6::DrawAll(CDC *pDC)
 			}
 		}
 	}
-	for (j = 8; j < 12; j++)	//main column....
+	for (j = 8; j < 12; ++j)	//main column....
 	{
 		if (m_MainColumns[j].GetSize() == 0)
 		{

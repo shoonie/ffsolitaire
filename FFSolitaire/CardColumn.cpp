@@ -83,8 +83,7 @@ CFlowerCard * CCardColumn::ShowSecondCard()
 	if (m_nCurrentNumberOfCards < 2)
 		return nullptr;
 
-	list <CFlowerCard*>::iterator pFCList_Iter;
-	pFCList_Iter = m_CardList.begin();
+	auto pFCList_Iter = m_CardList.cbegin();
 	pFCList_Iter++;
 	CFlowerCard * pTemp = *pFCList_Iter;
 	return pTemp;
@@ -94,8 +93,7 @@ CFlowerCard * CCardColumn::ShowThirdCard()
 	if (m_nCurrentNumberOfCards < 3)
 		return nullptr;
 
-	list <CFlowerCard*>::iterator pFCList_Iter;
-	pFCList_Iter = m_CardList.begin();
+	auto pFCList_Iter = m_CardList.cbegin();
 	pFCList_Iter++;
 	pFCList_Iter++;
 	CFlowerCard * pTemp = *pFCList_Iter;
@@ -106,8 +104,7 @@ CFlowerCard * CCardColumn::ShowLastBeforeCard()
 {
 	if (m_nCurrentNumberOfCards < 2)
 		return nullptr;
-	list <CFlowerCard*>::iterator pFCList_Iter;
-	pFCList_Iter = m_CardList.end();
+	auto pFCList_Iter = m_CardList.cend();
 	pFCList_Iter--;
 	pFCList_Iter--;
 	CFlowerCard * pTemp = *pFCList_Iter;
@@ -124,9 +121,8 @@ const unique_ptr<CBitmap>& CCardColumn::GetBitmapOfCard(int nIndex)
 {
 	if (m_nCurrentNumberOfCards == 0)
 		return nullptr;
-	list <CFlowerCard*>::iterator pFCList_Iter;
-	pFCList_Iter = m_CardList.begin();
-	for (int i = 0; i < nIndex; i++)
+	auto pFCList_Iter = m_CardList.cbegin();
+	for (int i = 0; i < nIndex; ++i)
 		pFCList_Iter++;
 	CFlowerCard	* aCard = *pFCList_Iter;
 	return aCard->GetBitmap();
@@ -144,7 +140,7 @@ std::vector<int> CCardColumn::CheckFortuneResult()
 	vector<int> vtResult;
 	std::for_each(m_CardList.begin(), m_CardList.end(), [&vtAllResult](CFlowerCard	* aCard) { vtAllResult.push_back(aCard->GetNumber()); });
 
-	for (int i = 1; i <= 12; i++) {
+	for (int i = 1; i <= 12; ++i) {
 		if (4 == (int)count(vtAllResult.begin(), vtAllResult.end(), i))
 			vtResult.push_back(i);
 	}

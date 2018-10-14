@@ -36,11 +36,11 @@ class CPlay8By6 :
 	int	m_nCount;
 
 public:
-	bool SetMouseRegion();
-	bool ShuffleAndInit();
-	int	CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2);
-	bool CheckDbClick(CPoint pt) { return false; }
-	void DrawAll(CDC* pDC);
+	bool SetMouseRegion() override;
+	bool ShuffleAndInit() override;
+	int	CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2) override;
+	bool CheckDbClick(CPoint pt) override { return false; }
+	void DrawAll(CDC* pDC) override;
 
 	CPlay8By6(CDeck* aDeck);
 	virtual ~CPlay8By6(void);

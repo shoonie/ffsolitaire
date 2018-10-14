@@ -4,7 +4,7 @@
 CPlayFortuneTeller::CPlayFortuneTeller(CDeck* aDeck) :
 	CPlayer(aDeck),
 	m_bAnyCardSelected(false),
-	m_nSelectedColumn(NULL_SELECTED),
+	m_nSelectedColumn(SELECTED_COLUMN::NULL_SELECTED),
 	m_nCount(0),
 	m_nMatchCount(0)
 {
@@ -19,40 +19,14 @@ CPlayFortuneTeller::~CPlayFortuneTeller(void)
 
 CCardColumn& CPlayFortuneTeller::GetColumn(COLUMN_NAME name)
 {
-	switch (name)
-	{
-	case NAME_MAIN_COLUMN1:
-		return m_MainColumns[0];
-		break;
-	case NAME_MAIN_COLUMN2:
-		return m_MainColumns[1];
-		break;
-	case NAME_MAIN_COLUMN3:
-		return m_MainColumns[2];
-		break;
-	case NAME_MAIN_COLUMN4:
-		return m_MainColumns[3];
-		break;
-	case NAME_SOLVED_COLUMN1:
-		return m_aSolvedColumn[0];
-		break;
-	case NAME_SOLVED_COLUMN2:
-		return m_aSolvedColumn[1];
-		break;
-	case NAME_SOLVED_COLUMN3:
-		return m_aSolvedColumn[2];
-		break;
-	case NAME_SOLVED_COLUMN4:
-		return m_aSolvedColumn[3];
-		break;
-	case NAME_HIDDEN_COLUMN:
+	if(static_cast<int>(name) < 4)
+		return m_MainColumns[static_cast<int>(name)];
+	else if (static_cast<int>(name) < 8)
+		return m_MainColumns[static_cast<int>(name) -4];
+	else if (name == COLUMN_NAME::NAME_HIDDEN_COLUMN)
 		return m_aHiddenColumn;
-		break;
-	case NAME_BOARD_COLUMN:
-	default:
+	else
 		return m_aBoardColumn;
-		break;
-	}
 }
 bool CPlayFortuneTeller::ShuffleAndInit()
 {
@@ -72,10 +46,10 @@ bool CPlayFortuneTeller::ShuffleAndInit()
 	m_nMatchCount = 0;
 	m_pSetOfDeck->Shuffle();
 
-	for (i = 0; i < 20; i++)
+	for (i = 0; i < 20; ++i)
 		m_MainColumns[i % 4].PushCards(m_pSetOfDeck->GetCardAtIndex(i).get());
 
-	for (i = 20; i < 48; i++)
+	for (i = 20; i < 48; ++i)
 		m_aHiddenColumn.PushCards(m_pSetOfDeck->GetCardAtIndex(i).get());
 
 	return true;
@@ -109,7 +83,7 @@ bool CPlayFortuneTeller::PushSolveColumn(CFlowerCard	*SolveCard)
 bool CPlayFortuneTeller::SetMouseRegion()
 {
 	bool	bRet = true;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; ++i)
 		m_MainColumns[i].SetLastRect(START_X_FORTUNE + i * INTERVAL_COLUMNTOCOLUMN_FORTUNE,
 			INTERVAL_YTOY_FORTUNE*m_MainColumns[i].GetSize(),
 			CARD_CX,
@@ -152,7 +126,7 @@ void CPlayFortuneTeller::DrawAll(CDC* pDC)
 	pOldBitmap = (CBitmap*)MemDC.SelectObject(pBitmap);
 	///////////////////////////////////////////////////////////////
 	//draw main column....
-	for (j = 0; j < 4; j++)	//main column....
+	for (j = 0; j < 4; ++j)	//main column....
 	{
 		for (i = 0; i < GetColumn((COLUMN_NAME)j).GetSize(); i++)
 		{
@@ -174,9 +148,9 @@ void CPlayFortuneTeller::DrawAll(CDC* pDC)
 	}
 	///////////////////////////////////////////////////////////////////
 	//	Draw	Hidden Set.
-	if (GetColumn(NAME_HIDDEN_COLUMN).GetSize())
+	if (GetColumn(COLUMN_NAME::NAME_HIDDEN_COLUMN).GetSize())
 	{
-		pBitmap = GetColumn(NAME_HIDDEN_COLUMN).GetHiddenBitmap().get();
+		pBitmap = GetColumn(COLUMN_NAME::NAME_HIDDEN_COLUMN).GetHiddenBitmap().get();
 		MemDC.SelectObject(pBitmap);
 		/////////////////////////////////////
 
@@ -185,9 +159,9 @@ void CPlayFortuneTeller::DrawAll(CDC* pDC)
 	}
 	///////////////////////////////////////////////////////////////////
 	//	Draw	Board Set.
-	for (i = 0; i < GetColumn(NAME_BOARD_COLUMN).GetSize(); i++)
+	for (i = 0; i < GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize(); i++)
 	{
-		pBitmap = GetColumn(NAME_BOARD_COLUMN).GetBitmapOfCard(i).get();
+		pBitmap = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetBitmapOfCard(i).get();
 		MemDC.SelectObject(pBitmap);
 
 		pDC->BitBlt(BOARD_STARTX_FORTUNE + BOARD_INTERVAL_FORTUNE * i,
@@ -198,18 +172,18 @@ void CPlayFortuneTeller::DrawAll(CDC* pDC)
 	///////////////////////////////////////////////////////////////
 	if (m_bAnyCardSelected)
 	{
-		pBitmap = GetColumn(NAME_HIDDEN_COLUMN).GetSelectedBitmap().get();
+		pBitmap = GetColumn(COLUMN_NAME::NAME_HIDDEN_COLUMN).GetSelectedBitmap().get();
 		MemDC.SelectObject(pBitmap);
-		if (m_nSelectedColumn < 4)
+		if (static_cast<int>(m_nSelectedColumn) < 4)
 		{
 			pDC->BitBlt(START_X_FORTUNE + INTERVAL_COLUMNTOCOLUMN_FORTUNE * (int)m_nSelectedColumn,
 				(GetColumn((COLUMN_NAME)m_nSelectedColumn).GetSize()) *INTERVAL_YTOY_FORTUNE,
 				CARD_CX, CARD_CY,
 				&MemDC, 0, 0, SRCAND);
 		}
-		else if (m_nSelectedColumn == 4)
+		else if (static_cast<int>(m_nSelectedColumn) == 4)
 		{
-			if (GetColumn(NAME_BOARD_COLUMN).GetSize() == 1)
+			if (GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize() == 1)
 			{
 
 				pDC->BitBlt(BOARD_STARTX_FORTUNE,
@@ -226,10 +200,10 @@ void CPlayFortuneTeller::DrawAll(CDC* pDC)
 					&MemDC, 0, 0, SRCAND);
 			}
 		}
-		else if (m_nSelectedColumn == 5)
+		else if (static_cast<int>(m_nSelectedColumn) == 5)
 		{
 			pDC->BitBlt(BOARD_STARTX_FORTUNE + BOARD_INTERVAL_FORTUNE *
-				(GetColumn(NAME_BOARD_COLUMN).GetSize() - 1),
+				(GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize() - 1),
 				BOARD_STARTY_FORTUNE,
 				CARD_CX, CARD_CY,
 				&MemDC, 0, 0, SRCAND);
@@ -249,11 +223,11 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 	rt1.top = 0;
 	rt2.bottom = 0;
 
-	for (int i = 0; i < 6; i++)	//0~3 main column, 4 first card of board 5 last card of board
+	for (int i = 0; i < 6; ++i)	//0~3 main column, 4 first card of board 5 last card of board
 	{
 		if ((i < 4 && GetColumn((COLUMN_NAME)i).GetLastRect().PtInRect(pt))
-			|| (i == 4 && GetColumn(NAME_BOARD_COLUMN).GetFirstRect().PtInRect(pt))
-			|| (i == 5 && GetColumn(NAME_BOARD_COLUMN).GetLastRect().PtInRect(pt)))
+			|| (i == 4 && GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetFirstRect().PtInRect(pt))
+			|| (i == 5 && GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetLastRect().PtInRect(pt)))
 		{
 			if (!m_bAnyCardSelected)
 			{
@@ -267,7 +241,7 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 				}
 				else if (i == 4)
 				{
-					bSelected = FindNewSelectedCard((SELECTED_COLUMN)i, GetColumn(NAME_BOARD_COLUMN).ShowFirstCard());
+					bSelected = FindNewSelectedCard((SELECTED_COLUMN)i, GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).ShowFirstCard());
 					rt1.top = BOARD_STARTY_FORTUNE;
 					rt1.left = BOARD_STARTX_FORTUNE;
 					rt1.bottom = rt1.top + CARD_CY;
@@ -275,9 +249,9 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 				}
 				else if (i == 5)
 				{
-					bSelected = FindNewSelectedCard((SELECTED_COLUMN)i, GetColumn(NAME_BOARD_COLUMN).ShowLastCard());
+					bSelected = FindNewSelectedCard((SELECTED_COLUMN)i, GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).ShowLastCard());
 					rt1.top = BOARD_STARTY_FORTUNE;
-					rt1.left = BOARD_STARTX_FORTUNE + (GetColumn(NAME_BOARD_COLUMN).GetSize() - 1)*BOARD_INTERVAL_FORTUNE;
+					rt1.left = BOARD_STARTX_FORTUNE + (GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize() - 1)*BOARD_INTERVAL_FORTUNE;
 					rt1.bottom = rt1.top + CARD_CY;
 					rt1.right = rt1.left + CARD_CX;
 				}
@@ -295,10 +269,10 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 					int nNewSelectedNumber = 0;
 					if (i < 4 && GetColumn((COLUMN_NAME)i).ShowLastCard())
 						nNewSelectedNumber = GetColumn((COLUMN_NAME)i).ShowLastCard()->GetNumber();
-					else if (i == 4 && GetColumn(NAME_BOARD_COLUMN).ShowFirstCard())
-						nNewSelectedNumber = GetColumn(NAME_BOARD_COLUMN).ShowFirstCard()->GetNumber();
-					else if (i == 5 && GetColumn(NAME_BOARD_COLUMN).ShowLastCard())
-						nNewSelectedNumber = GetColumn(NAME_BOARD_COLUMN).ShowLastCard()->GetNumber();
+					else if (i == 4 && GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).ShowFirstCard())
+						nNewSelectedNumber = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).ShowFirstCard()->GetNumber();
+					else if (i == 5 && GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).ShowLastCard())
+						nNewSelectedNumber = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).ShowLastCard()->GetNumber();
 
 					if (nOldSelectedNumber == nNewSelectedNumber)
 					{
@@ -324,49 +298,49 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 							rt1.top = BOARD_STARTY_FORTUNE;
 							rt1.left = BOARD_STARTX_FORTUNE;
 							rt1.bottom = rt1.top + CARD_CY;
-							rt1.right = BOARD_STARTX_FORTUNE + (GetColumn(NAME_BOARD_COLUMN).GetSize() + 1)*BOARD_INTERVAL_FORTUNE + CARD_CY;
+							rt1.right = BOARD_STARTX_FORTUNE + (GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize() + 1)*BOARD_INTERVAL_FORTUNE + CARD_CY;
 
-							pTemp = GetColumn(NAME_BOARD_COLUMN).PopFirstCard();
+							pTemp = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).PopFirstCard();
 						}
 						else if (i == 5)
 						{
 							rt1.top = BOARD_STARTY_FORTUNE;
 							rt1.left = BOARD_STARTX_FORTUNE;
 							rt1.bottom = rt1.top + CARD_CY;
-							rt1.right = BOARD_STARTX_FORTUNE + (GetColumn(NAME_BOARD_COLUMN).GetSize() + 1)*BOARD_INTERVAL_FORTUNE + CARD_CY;
+							rt1.right = BOARD_STARTX_FORTUNE + (GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize() + 1)*BOARD_INTERVAL_FORTUNE + CARD_CY;
 
-							pTemp = GetColumn(NAME_BOARD_COLUMN).PopLastCard();
+							pTemp = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).PopLastCard();
 						}
 
 						PushSolveColumn(pTemp);
 						//pop & push old
 
-						if (m_nSelectedColumn < 4)
+						if (static_cast<int>(m_nSelectedColumn) < 4)
 						{
 							rt2.top = START_Y_FORTUNE;
 							rt2.bottom = START_Y_FORTUNE + 5 * INTERVAL_YTOY_FORTUNE + CARD_CY;
-							rt2.left = START_X_FORTUNE + m_nSelectedColumn * INTERVAL_COLUMNTOCOLUMN_FORTUNE;
+							rt2.left = START_X_FORTUNE + static_cast<int>(m_nSelectedColumn) * INTERVAL_COLUMNTOCOLUMN_FORTUNE;
 							rt2.right = rt2.left + CARD_CX;
 
 							pTemp = GetColumn((COLUMN_NAME)m_nSelectedColumn).PopLastCard();//PopMainColumn(nOldSelectedColumnNumber);
 						}
-						else if (m_nSelectedColumn == 4)
+						else if (static_cast<int>(m_nSelectedColumn) == 4)
 						{
 							rt2.top = BOARD_STARTY_FORTUNE;
 							rt2.left = BOARD_STARTX_FORTUNE;
 							rt2.bottom = rt2.top + CARD_CY;
-							rt2.right = BOARD_STARTX_FORTUNE + (GetColumn(NAME_BOARD_COLUMN).GetSize())*BOARD_INTERVAL_FORTUNE + CARD_CY;
+							rt2.right = BOARD_STARTX_FORTUNE + (GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize())*BOARD_INTERVAL_FORTUNE + CARD_CY;
 
-							pTemp = GetColumn(NAME_BOARD_COLUMN).PopFirstCard();
+							pTemp = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).PopFirstCard();
 						}
-						else if (m_nSelectedColumn == 5)
+						else if (static_cast<int>(m_nSelectedColumn) == 5)
 						{
 							rt2.top = BOARD_STARTY_FORTUNE;
 							rt2.left = BOARD_STARTX_FORTUNE;
 							rt2.bottom = rt2.top + CARD_CY;
-							rt2.right = BOARD_STARTX_FORTUNE + (GetColumn(NAME_BOARD_COLUMN).GetSize())*BOARD_INTERVAL_FORTUNE + CARD_CY;
+							rt2.right = BOARD_STARTX_FORTUNE + (GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize())*BOARD_INTERVAL_FORTUNE + CARD_CY;
 
-							pTemp = GetColumn(NAME_BOARD_COLUMN).PopLastCard();
+							pTemp = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).PopLastCard();
 						}
 						PushSolveColumn(pTemp);
 
@@ -398,13 +372,13 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 	}
 	// board card last & before last....	
 	if (m_bAnyCardSelected &&
-		GetColumn(NAME_BOARD_COLUMN).GetLastBeforeRect().PtInRect(pt) &&
-		m_nSelectedColumn == BOARD_COLUMN_RIGHT &&
-		GetColumn(NAME_BOARD_COLUMN).GetSize() > 2
+		GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetLastBeforeRect().PtInRect(pt) &&
+		m_nSelectedColumn == SELECTED_COLUMN::BOARD_COLUMN_RIGHT &&
+		GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize() > 2
 		)
 	{
-		int nOldSelectedNumber = GetColumn(NAME_BOARD_COLUMN).ShowLastCard()->GetNumber();
-		int nNewSelectedNumber = GetColumn(NAME_BOARD_COLUMN).ShowLastBeforeCard()->GetNumber();
+		int nOldSelectedNumber = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).ShowLastCard()->GetNumber();
+		int nNewSelectedNumber = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).ShowLastBeforeCard()->GetNumber();
 		if (nOldSelectedNumber == nNewSelectedNumber)
 		{
 			////////
@@ -417,16 +391,16 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 			rt1.top = BOARD_STARTY_FORTUNE;
 			rt1.left = HIDDEN_STARTX_FORTUNE;
 			rt1.bottom = rt1.top + CARD_CY;
-			rt1.right = BOARD_STARTX_FORTUNE + (GetColumn(NAME_BOARD_COLUMN).GetSize())*BOARD_INTERVAL_FORTUNE + CARD_CX;
+			rt1.right = BOARD_STARTX_FORTUNE + (GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize())*BOARD_INTERVAL_FORTUNE + CARD_CX;
 
 
 			////////
 			CFlowerCard* pTemp;
 			//pop & push new 
-			pTemp = GetColumn(NAME_BOARD_COLUMN).PopLastCard();
+			pTemp = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).PopLastCard();
 			PushSolveColumn(pTemp);
 			//pop & push old
-			pTemp = GetColumn(NAME_BOARD_COLUMN).PopLastCard();
+			pTemp = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).PopLastCard();
 			PushSolveColumn(pTemp);
 
 			m_bAnyCardSelected = false;
@@ -446,40 +420,40 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 		nRedraw = 1;
 
 		//		SELECTED_COLUMN SelectedColumn	=	GetSelectedColumn();
-		if (m_nSelectedColumn < 4)
+		if ( static_cast<int>(m_nSelectedColumn) < 4)
 		{
 			rt1.top = START_Y_FORTUNE + (GetColumn((COLUMN_NAME)m_nSelectedColumn).GetSize() - 1) * INTERVAL_YTOY_FORTUNE;
 			rt1.left = START_X_FORTUNE + (int)m_nSelectedColumn * INTERVAL_COLUMNTOCOLUMN_FORTUNE;
 			rt1.bottom = rt1.top + CARD_CY;
 			rt1.right = rt1.left + CARD_CX;
 		}
-		else if (m_nSelectedColumn == 4)
+		else if (static_cast<int>(m_nSelectedColumn) == 4)
 		{
 			rt1.top = BOARD_STARTY_FORTUNE;
 			rt1.left = BOARD_STARTX_FORTUNE;
 			rt1.bottom = rt1.top + CARD_CY;
 			rt1.right = rt1.left + CARD_CX;
 		}
-		else if (m_nSelectedColumn == 5)
+		else if (static_cast<int>(m_nSelectedColumn) == 5)
 		{
 			rt1.top = BOARD_STARTY_FORTUNE;
-			rt1.left = BOARD_STARTX_FORTUNE + (GetColumn(NAME_BOARD_COLUMN).GetSize() - 1)* BOARD_INTERVAL_FORTUNE;
+			rt1.left = BOARD_STARTX_FORTUNE + (GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize() - 1)* BOARD_INTERVAL_FORTUNE;
 			rt1.bottom = rt1.top + CARD_CY;
 			rt1.right = rt1.left + CARD_CX;
 		}
 		m_bAnyCardSelected = bSelected;
 		//		SetHavingSelectedCard(bSelected);
 	}
-	if (GetColumn(NAME_HIDDEN_COLUMN).GetLastRect().PtInRect(pt))
+	if (GetColumn(COLUMN_NAME::NAME_HIDDEN_COLUMN).GetLastRect().PtInRect(pt))
 	{
 		CFlowerCard* pTemp;
-		pTemp = GetColumn(NAME_HIDDEN_COLUMN).PopLastCard();//PopHiddenColumn();
+		pTemp = GetColumn(COLUMN_NAME::NAME_HIDDEN_COLUMN).PopLastCard();//PopHiddenColumn();
 		if (pTemp)
-			GetColumn(NAME_BOARD_COLUMN).PushCards(pTemp);//PushBoardColumn(pTemp);
+			GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).PushCards(pTemp);//PushBoardColumn(pTemp);
 		rt1.top = BOARD_STARTY_FORTUNE;
 		rt1.left = HIDDEN_STARTX_FORTUNE;
 		rt1.bottom = rt1.top + CARD_CY;
-		rt1.right = BOARD_STARTX_FORTUNE + (GetColumn(NAME_BOARD_COLUMN).GetSize() + 1)*BOARD_INTERVAL_FORTUNE + CARD_CY;
+		rt1.right = BOARD_STARTX_FORTUNE + (GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize() + 1)*BOARD_INTERVAL_FORTUNE + CARD_CY;
 
 		nRedraw = 1;
 	}
@@ -501,7 +475,7 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 std::vector<int> CPlayFortuneTeller::GetResult()
 {
 	std::vector<int> resultVector;
-	for (int i = 4; i < 8; i++)
+	for (int i = 4; i < 8; ++i)
 	{
 		auto partVector = GetColumn((COLUMN_NAME)i).CheckFortuneResult();
 		resultVector.insert(resultVector.end(), partVector.begin(), partVector.end());
@@ -523,16 +497,16 @@ bool CPlayFortuneTeller::CheckDbClick(CPoint pt)
 {
 	bool bRedraw = false;
 	CRect	rtBoardColumn;
-	memcpy(&rtBoardColumn, GetColumn(NAME_BOARD_COLUMN).GetFirstRect(), sizeof(CRect));
-	rtBoardColumn.right = GetColumn(NAME_BOARD_COLUMN).GetLastRect().right;
-	int nCount = GetColumn(NAME_BOARD_COLUMN).GetSize();
+	memcpy(&rtBoardColumn, GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetFirstRect(), sizeof(CRect));
+	rtBoardColumn.right = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetLastRect().right;
+	int nCount = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).GetSize();
 	if (nCount > 2 &&
-		GetColumn(NAME_HIDDEN_COLUMN).GetSize() == 0 &&
+		GetColumn(COLUMN_NAME::NAME_HIDDEN_COLUMN).GetSize() == 0 &&
 		rtBoardColumn.PtInRect(pt))
 	{
-		for (int i = 0; i < nCount; i++)
+		for (int i = 0; i < nCount; ++i)
 		{
-			GetColumn(NAME_HIDDEN_COLUMN).PushCards(GetColumn(NAME_BOARD_COLUMN).PopLastCard());
+			GetColumn(COLUMN_NAME::NAME_HIDDEN_COLUMN).PushCards(GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).PopLastCard());
 		}
 		bRedraw = true;
 	}
