@@ -20,10 +20,10 @@ bool CPlay4BY6::ShuffleAndInit()
 	m_pSetOfDeck->Shuffle();
 
 	for (i = 0; i < 24; ++i)
-		m_MainColumns[i % 12].PushCards(m_pSetOfDeck->GetCardAtIndex(i).get());
+		m_MainColumns[i % 12].PushCards(m_pSetOfDeck->GetCardAtIndex(i));
 
-	for (i = 24; i < 48; ++i)
-		m_HiddenColumn.PushCards(m_pSetOfDeck->GetCardAtIndex(i).get());
+	for (i = 24; i < NumberOfCard; ++i)
+		m_HiddenColumn.PushCards(m_pSetOfDeck->GetCardAtIndex(i));
 	return true;
 }
 
@@ -206,7 +206,7 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 				{
 					bFoundSomething = true;
 					int nSizeCurColumn = m_MainColumns[i].GetSize();
-					CFlowerCard * pCurCard;
+					shared_ptr<CFlowerCard> pCurCard;
 					int nCurNumber = 0;
 					int nCurPosition = 0;
 					if (nSizeCurColumn)
@@ -229,7 +229,7 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 						break;
 					}
 
-					CFlowerCard * pTempCard[4];
+					shared_ptr<CFlowerCard> pTempCard[4];
 					int		nDepthInColumn = 0;
 
 					//check prev card top....
@@ -480,7 +480,7 @@ int CPlay4BY6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 	{
 		for (i = 0; i < 12; ++i)
 		{
-			CFlowerCard	* pCard;
+			shared_ptr<CFlowerCard> pCard;
 			pCard = m_MainColumns[i].ShowFirstCard();
 			if (pCard->GetPosition() != 1)
 			{

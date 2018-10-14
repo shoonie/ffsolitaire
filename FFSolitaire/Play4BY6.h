@@ -22,7 +22,7 @@ class CPlay4BY6 :
 
 	int	m_nCount;
 	int	m_nSelectedColumn;
-	CFlowerCard* m_pSelectedCard;
+	shared_ptr<CFlowerCard> m_pSelectedCard;
 
 public:
 	bool SetMouseRegion() override;

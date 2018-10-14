@@ -20,7 +20,7 @@ public:
 	CFlowerCard(int nID = -1);
 	CFlowerCard(const CFlowerCard & CopyCard);
 	CFlowerCard& operator=(const CFlowerCard & AssignCard);
-	CFlowerCard(CFlowerCard && CopyCard) = delete;
-	CFlowerCard& operator=(CFlowerCard && AssignCard) = delete;
+	CFlowerCard(CFlowerCard && moveCard);
+	CFlowerCard& operator=(CFlowerCard && moveCard);
 	virtual ~CFlowerCard();
 };

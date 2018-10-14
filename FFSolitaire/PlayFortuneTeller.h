@@ -55,14 +55,15 @@ private:
 	bool			m_bAnyCardSelected;
 
 	SELECTED_COLUMN	m_nSelectedColumn;
-	CFlowerCard	*	m_pSelectedCard;
+	shared_ptr<CFlowerCard>		m_pSelectedCard;
 	int				m_nCount;
 	int				m_nMatchCount;
 
-	bool PushSolveColumn(CFlowerCard	*SolveCard);
+	bool PushSolveColumn(shared_ptr<CFlowerCard> SolveCard);
 	CCardColumn& GetColumn(COLUMN_NAME name);
-	bool FindNewSelectedCard(SELECTED_COLUMN nColumn, CFlowerCard *pCard);
+	bool FindNewSelectedCard(SELECTED_COLUMN nColumn, shared_ptr<CFlowerCard> pCard);
 	std::vector<int> GetResult();
+
 public:
 	bool	SetMouseRegion();
 	bool	ShuffleAndInit();

@@ -47,14 +47,14 @@ bool CPlayFortuneTeller::ShuffleAndInit()
 	m_pSetOfDeck->Shuffle();
 
 	for (i = 0; i < 20; ++i)
-		m_MainColumns[i % 4].PushCards(m_pSetOfDeck->GetCardAtIndex(i).get());
+		m_MainColumns[i % 4].PushCards(m_pSetOfDeck->GetCardAtIndex(i));
 
-	for (i = 20; i < 48; ++i)
-		m_aHiddenColumn.PushCards(m_pSetOfDeck->GetCardAtIndex(i).get());
+	for (i = 20; i < NumberOfCard; ++i)
+		m_aHiddenColumn.PushCards(m_pSetOfDeck->GetCardAtIndex(i));
 
 	return true;
 }
-bool CPlayFortuneTeller::PushSolveColumn(CFlowerCard	*SolveCard)
+bool CPlayFortuneTeller::PushSolveColumn(shared_ptr<CFlowerCard> SolveCard)
 {
 	switch (m_nCount % 8)
 	{
@@ -283,7 +283,7 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 							nNewSelectedNumber);
 						TRACE(s);
 						////////
-						CFlowerCard* pTemp;
+						shared_ptr<CFlowerCard> pTemp;
 						//pop & push new 
 						if (i < 4)
 						{
@@ -322,7 +322,7 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 							rt2.left = START_X_FORTUNE + static_cast<int>(m_nSelectedColumn) * INTERVAL_COLUMNTOCOLUMN_FORTUNE;
 							rt2.right = rt2.left + CARD_CX;
 
-							pTemp = GetColumn((COLUMN_NAME)m_nSelectedColumn).PopLastCard();//PopMainColumn(nOldSelectedColumnNumber);
+							pTemp = GetColumn((COLUMN_NAME)m_nSelectedColumn).PopLastCard();
 						}
 						else if (static_cast<int>(m_nSelectedColumn) == 4)
 						{
@@ -395,7 +395,7 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 
 
 			////////
-			CFlowerCard* pTemp;
+			shared_ptr<CFlowerCard> pTemp;
 			//pop & push new 
 			pTemp = GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).PopLastCard();
 			PushSolveColumn(pTemp);
@@ -446,7 +446,7 @@ int CPlayFortuneTeller::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 	}
 	if (GetColumn(COLUMN_NAME::NAME_HIDDEN_COLUMN).GetLastRect().PtInRect(pt))
 	{
-		CFlowerCard* pTemp;
+		shared_ptr<CFlowerCard> pTemp;
 		pTemp = GetColumn(COLUMN_NAME::NAME_HIDDEN_COLUMN).PopLastCard();//PopHiddenColumn();
 		if (pTemp)
 			GetColumn(COLUMN_NAME::NAME_BOARD_COLUMN).PushCards(pTemp);//PushBoardColumn(pTemp);
@@ -483,7 +483,7 @@ std::vector<int> CPlayFortuneTeller::GetResult()
 	return resultVector;
 
 }
-bool CPlayFortuneTeller::FindNewSelectedCard(SELECTED_COLUMN nColumn, CFlowerCard *pCard)
+bool CPlayFortuneTeller::FindNewSelectedCard(SELECTED_COLUMN nColumn, shared_ptr<CFlowerCard> pCard)
 {
 	if (pCard == nullptr)
 		return false;

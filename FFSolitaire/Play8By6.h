@@ -32,7 +32,7 @@ class CPlay8By6 :
 	bool m_bAnyCardSelected;
 
 	int m_nSelectedColumn;
-	CFlowerCard* m_pSelectedCard;
+	shared_ptr<CFlowerCard> m_pSelectedCard;
 	int	m_nCount;
 
 public:

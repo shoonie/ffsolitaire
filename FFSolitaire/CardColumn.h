@@ -1,18 +1,15 @@
 #include <list>
 #include <vector>
-
-using namespace std;
-
 #include "FlowerCard.h"
 
 class CCardColumn
 {
-	CRect m_rtBoundaryRect;		// Do I still need thsi variable?
+	CRect m_rtBoundaryRect;
 	CRect m_rtLastRect;
 	CRect m_rtLastBeforeRect;
 	CRect m_rtFirstRect;
 
-	list<CFlowerCard*> m_CardList;
+	list<shared_ptr<CFlowerCard>> m_CardList;
 
 	int	m_nCurrentNumberOfCards;
 	bool m_bHasHidden;
@@ -23,6 +20,9 @@ public:
 	~CCardColumn(void);
 	CCardColumn(const CCardColumn &);
 	CCardColumn& operator=(const CCardColumn & AssignDeck);
+
+	CCardColumn(CCardColumn &&) = delete;
+	CCardColumn& operator=(CCardColumn && ) = delete;
 
 	bool HasHidden() { return m_bHasHidden; }
 	void SetHiddenOrShow(const bool bShow) { m_bHasHidden = bShow; }
@@ -43,16 +43,19 @@ public:
 	bool SetLastBeforeRect(int x, int y, int cx, int cy);
 	bool SetFirstRect(int x, int y, int cx, int cy);
 
-	CFlowerCard * PopLastCard();
-	CFlowerCard * ShowLastCard();
-	CFlowerCard * ShowLastBeforeCard();
-	CFlowerCard * ShowFirstCard();
-	CFlowerCard * ShowSecondCard();
-	CFlowerCard * ShowThirdCard();
-	CFlowerCard * PopFirstCard();
+	shared_ptr<CFlowerCard> PopLastCard();
+	shared_ptr<CFlowerCard> ShowLastBeforeCard();
+	shared_ptr<CFlowerCard> ShowFirstCard();
+	shared_ptr<CFlowerCard> ShowSecondCard();
+	shared_ptr<CFlowerCard> ShowThirdCard();
+	shared_ptr<CFlowerCard> PopFirstCard();
+	decltype(auto) ShowLastCard()
+	{
+		return m_CardList.back();
+	}
 
 	bool CleanCard();
-	bool PushCards(CFlowerCard * pCard);
+	bool PushCards(shared_ptr<CFlowerCard> pCard);
 
 	vector<int> CheckFortuneResult();
 };

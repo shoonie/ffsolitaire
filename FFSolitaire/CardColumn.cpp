@@ -30,65 +30,51 @@ CCardColumn& CCardColumn::operator =(const CCardColumn & AssignCard)
 	m_bHasHidden = AssignCard.m_bHasHidden;
 	return *this;
 }
-bool CCardColumn::PushCards(CFlowerCard *pCard)
+
+bool CCardColumn::PushCards(shared_ptr<CFlowerCard>pCard)
 {
 	m_CardList.push_back(pCard);
 	m_nCurrentNumberOfCards++;
 	return true;
 }
-CFlowerCard * CCardColumn::PopFirstCard()
+
+shared_ptr<CFlowerCard> CCardColumn::PopFirstCard()
 {
 	if (m_nCurrentNumberOfCards == 0)
 		return nullptr;
 
-	CFlowerCard * pTemp;
-	pTemp = m_CardList.front();
+	auto pTemp = m_CardList.front();
 	m_CardList.pop_front();
 	m_nCurrentNumberOfCards--;
 	return pTemp;
 }
 
-CFlowerCard * CCardColumn::PopLastCard()
+shared_ptr<CFlowerCard> CCardColumn::PopLastCard()
 {
-	if (m_nCurrentNumberOfCards == 0)
-		return nullptr;
-
-	CFlowerCard * pTemp;
-	pTemp = m_CardList.back();
+	auto pTemp = m_CardList.back();
 	m_CardList.pop_back();
 	m_nCurrentNumberOfCards--;
 	return pTemp;
 }
 
-CFlowerCard * CCardColumn::ShowLastCard()
+shared_ptr<CFlowerCard> CCardColumn::ShowFirstCard()
 {
 	if (m_nCurrentNumberOfCards == 0)
 		return nullptr;
-
-	CFlowerCard * pTemp;
-	pTemp = m_CardList.back();
-	return pTemp;
+	return m_CardList.front();
 }
-CFlowerCard * CCardColumn::ShowFirstCard()
-{
-	if (m_nCurrentNumberOfCards == 0)
-		return nullptr;
 
-	CFlowerCard * pTemp;
-	pTemp = m_CardList.front();
-	return pTemp;
-}
-CFlowerCard * CCardColumn::ShowSecondCard()
+shared_ptr<CFlowerCard> CCardColumn::ShowSecondCard()
 {
 	if (m_nCurrentNumberOfCards < 2)
 		return nullptr;
 
 	auto pFCList_Iter = m_CardList.cbegin();
 	pFCList_Iter++;
-	CFlowerCard * pTemp = *pFCList_Iter;
-	return pTemp;
+	return *pFCList_Iter;
 }
-CFlowerCard * CCardColumn::ShowThirdCard()
+
+shared_ptr<CFlowerCard> CCardColumn::ShowThirdCard()
 {
 	if (m_nCurrentNumberOfCards < 3)
 		return nullptr;
@@ -96,19 +82,17 @@ CFlowerCard * CCardColumn::ShowThirdCard()
 	auto pFCList_Iter = m_CardList.cbegin();
 	pFCList_Iter++;
 	pFCList_Iter++;
-	CFlowerCard * pTemp = *pFCList_Iter;
-	return pTemp;
+	return *pFCList_Iter;
 }
 
-CFlowerCard * CCardColumn::ShowLastBeforeCard()
+shared_ptr<CFlowerCard> CCardColumn::ShowLastBeforeCard()
 {
 	if (m_nCurrentNumberOfCards < 2)
 		return nullptr;
 	auto pFCList_Iter = m_CardList.cend();
 	pFCList_Iter--;
 	pFCList_Iter--;
-	CFlowerCard * pTemp = *pFCList_Iter;
-	return pTemp;
+	return *pFCList_Iter;
 }
 
 const unique_ptr<CBitmap>& CCardColumn::GetSelectedBitmap()
@@ -119,18 +103,15 @@ const unique_ptr<CBitmap>& CCardColumn::GetSelectedBitmap()
 }
 const unique_ptr<CBitmap>& CCardColumn::GetBitmapOfCard(int nIndex)
 {
-	if (m_nCurrentNumberOfCards == 0)
-		return nullptr;
 	auto pFCList_Iter = m_CardList.cbegin();
 	for (int i = 0; i < nIndex; ++i)
 		pFCList_Iter++;
-	CFlowerCard	* aCard = *pFCList_Iter;
+	auto aCard = *pFCList_Iter;
 	return aCard->GetBitmap();
 }
+
 const unique_ptr<CBitmap>& CCardColumn::GetHiddenBitmap()
 {
-	if (m_nCurrentNumberOfCards == 0)
-		return nullptr;
 	return  m_CardList.back()->GetHiddenBitmap();
 }
 
@@ -138,7 +119,7 @@ std::vector<int> CCardColumn::CheckFortuneResult()
 {
 	vector<int> vtAllResult;
 	vector<int> vtResult;
-	std::for_each(m_CardList.begin(), m_CardList.end(), [&vtAllResult](CFlowerCard	* aCard) { vtAllResult.push_back(aCard->GetNumber()); });
+	std::for_each(m_CardList.begin(), m_CardList.end(), [&vtAllResult](auto aCard) { vtAllResult.push_back(aCard->GetNumber()); });
 
 	for (int i = 1; i <= 12; ++i) {
 		if (4 == (int)count(vtAllResult.begin(), vtAllResult.end(), i))

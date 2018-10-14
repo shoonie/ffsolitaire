@@ -10,7 +10,7 @@ CPlay8By6::~CPlay8By6(void)
 {
 }
 
-bool	CPlay8By6::ShuffleAndInit()
+bool CPlay8By6::ShuffleAndInit()
 {
 
 	int i;
@@ -21,8 +21,8 @@ bool	CPlay8By6::ShuffleAndInit()
 
 	m_pSetOfDeck->Shuffle();
 
-	for (i = 0; i < 48; ++i)
-		m_MainColumns[i % 8].PushCards(m_pSetOfDeck->GetCardAtIndex(i).get());
+	for (i = 0; i < NumberOfCard; ++i)
+		m_MainColumns[i % 8].PushCards(m_pSetOfDeck->GetCardAtIndex(i));
 
 	m_bAnyCardSelected = false;
 	return true;
@@ -111,11 +111,11 @@ int CPlay8By6::CheckPoint(const CPoint & pt, CRect& rt1, CRect& rt2)
 				else if (i < 8)
 				{		/////////think over and over,,,,very important part////
 					int	nSelectedColumn = m_nSelectedColumn;
-					CFlowerCard * pPrevCard = m_pSelectedCard;
+					shared_ptr<CFlowerCard> pPrevCard = m_pSelectedCard;
 					int nSizeCurColumn = m_MainColumns[i].GetSize();
 					if (nSizeCurColumn > 0)
 					{
-						CFlowerCard * pCurCard = m_MainColumns[i].ShowLastCard();
+						shared_ptr<CFlowerCard> pCurCard = m_MainColumns[i].ShowLastCard();
 						if (pPrevCard->GetNumber() + 1 == pCurCard->GetNumber())
 						{
 							m_MainColumns[i].PushCards(m_MainColumns[nSelectedColumn].PopLastCard());
