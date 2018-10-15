@@ -29,7 +29,7 @@ END_MESSAGE_MAP()
 CFFSolitaireDoc::CFFSolitaireDoc()
 {
 	// TODO: add one-time construction code here
-	m_WhichGame	=	FORTUNE;
+	m_WhichGame	= WHAT_GAME_TO_PLAY::FORTUNE;
 	m_pPlay	= nullptr;
 
 }
@@ -55,15 +55,15 @@ BOOL CFFSolitaireDoc::OnNewDocument()
 	CDeck* aDeck = CDeck::Instance();
 	switch(m_WhichGame)
 	{
-	case FORTUNE:
+	case WHAT_GAME_TO_PLAY::FORTUNE:
 		m_pPlay	=	new CPlayFortuneTeller(aDeck);
 		AfxGetMainWnd()->SetWindowPos(NULL,10,10,800,700,0);
 		break;
-	case GAME12:
+	case WHAT_GAME_TO_PLAY::GAME12:
 		m_pPlay	=	new CPlay4BY6(aDeck);
 		AfxGetMainWnd()->SetWindowPos(NULL,10,10,800,700,0);
 		break;
-	case GAME8:
+	case WHAT_GAME_TO_PLAY::GAME8:
 		m_pPlay	=	new CPlay8By6(aDeck);
 		AfxGetMainWnd()->SetWindowPos(NULL,10,10,1000,700,0);
 		break;

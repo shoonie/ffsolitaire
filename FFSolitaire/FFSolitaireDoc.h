@@ -10,7 +10,7 @@
 
 class CFFSolitaireDoc : public CDocument
 {
-	enum WHAT_GAME_TO_PLAY
+	enum class WHAT_GAME_TO_PLAY
 	{
 		FORTUNE	=	1,
 		GAME12,
