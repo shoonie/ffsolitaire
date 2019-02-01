@@ -89,3 +89,4 @@ const unique_ptr<CBitmap>& CFlowerCard::GetHiddenBitmap()
 	m_pBitmap->LoadBitmap(IDB_BITMAP_HIDDEN);
 	return m_pBitmap;
 }
+//doing some job here
