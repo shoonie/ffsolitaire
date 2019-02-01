@@ -90,3 +90,4 @@ const unique_ptr<CBitmap>& CFlowerCard::GetHiddenBitmap()
 	return m_pBitmap;
 }
 //doing some job here
+// here change in second branch
